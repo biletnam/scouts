@@ -13,23 +13,13 @@ class UsersTableSeeder extends Seeder
 	{
 		DB::table('users')->insert([
 			[
-				'username'	=> 'leiding@18bp.be',
-				'nickname'	=> '',
-				'show_nick'	=> 0,
-				'password'	=> bcrypt('18BPcoma'),
-				'img'		=> '',
-				'active'	=> 0,
-				'member_id'	=> 1,
-				'tak_id'	=> 1,
-			],
-			[
 				'username'	=> 'timvd@18bp.be',
 				'nickname'	=> 'Thaa',
 				'show_nick'	=> 0,
 				'password'	=> bcrypt('t1mp1312'),
 				'img'		=> 'timvd.jpg',
 				'active'	=> 0,
-				'member_id'	=> 2,
+				'member_id'	=> 1,
 				'tak_id'	=> 4,
 			],
 			[
@@ -39,7 +29,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'bart.jpg',
 				'active'	=> 0,
-				'member_id'	=> 3,
+				'member_id'	=> 2,
 				'tak_id'	=> 2,
 			],
 			[
@@ -49,7 +39,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'vincent.jpg',
 				'active'	=> 1,
-				'member_id'	=> 4,
+				'member_id'	=> 3,
 				'tak_id'	=> 3,
 			],
 			[
@@ -59,7 +49,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'amber.jpg',
 				'active'	=> 1,
-				'member_id'	=> 5,
+				'member_id'	=> 4,
 				'tak_id'	=> 1,
 			],
 			[
@@ -69,7 +59,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'bjorn.jpg',
 				'active'	=> 1,
-				'member_id'	=> 6,
+				'member_id'	=> 5,
 				'tak_id'	=> 1,
 			],
 			[
@@ -79,7 +69,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'ward.jpg',
 				'active'	=> 1,
-				'member_id'	=> 7,
+				'member_id'	=> 6,
 				'tak_id'	=> 1,
 			],
 			[
@@ -89,7 +79,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'yorrik.jpg',
 				'active'	=> 1,
-				'member_id'	=> 8,
+				'member_id'	=> 7,
 				'tak_id'	=> 2,
 			],
 			[
@@ -99,7 +89,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'aster.jpg',
 				'active'	=> 1,
-				'member_id'	=> 9,
+				'member_id'	=> 8,
 				'tak_id'	=> 2,
 			],
 			[
@@ -109,7 +99,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'dagmar.jpg',
 				'active'	=> 1,
-				'member_id'	=> 10,
+				'member_id'	=> 9,
 				'tak_id'	=> 2,
 			],
 			[
@@ -119,7 +109,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'lena.jpg',
 				'active'	=> 1,
-				'member_id'	=> 11,
+				'member_id'	=> 10,
 				'tak_id'	=> 2,
 			],
 			[
@@ -129,7 +119,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'jannes.jpg',
 				'active'	=> 1,
-				'member_id'	=> 12,
+				'member_id'	=> 11,
 				'tak_id'	=> 3,
 			],
 			[
@@ -139,7 +129,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'yerco.jpg',
 				'active'	=> 1,
-				'member_id'	=> 13,
+				'member_id'	=> 12,
 				'tak_id'	=> 3,
 			],
 			[
@@ -149,7 +139,7 @@ class UsersTableSeeder extends Seeder
 				'password'	=> bcrypt('18BPcoma'),
 				'img'		=> 'shana.jpg',
 				'active'	=> 1,
-				'member_id'	=> 14,
+				'member_id'	=> 13,
 				'tak_id'	=> 4,
 			],
 		]);

@@ -28,9 +28,12 @@ class CreateMembersTable extends Migration
             $table->string('gsm')->nullable();
             $table->string('email')->nullable();
             
-            $table->string('tak');
+            $table->integer('tak_id')->unsigned();
             $table->boolean('paid')->default(0);
+            $table->boolean('leiding')->default(0);
             $table->integer('year');
+
+            $table->foreign('tak_id')->references('id')->on('takken')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

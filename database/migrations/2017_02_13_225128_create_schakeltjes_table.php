@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchakelsTable extends Migration
+class CreateSchakeltjesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSchakelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('schakels', function (Blueprint $table) {
+        Schema::create('schakeltjes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->boolean('archived');
+            $table->string('title');
+            $table->string('url');
+            $table->boolean('archived')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateSchakelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schakels');
+        Schema::dropIfExists('schakeltjes');
     }
 }

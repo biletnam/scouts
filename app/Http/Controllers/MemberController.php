@@ -2,29 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Member;
 use Illuminate\Http\Request;
+use Auth;
+use Excel;
+use Session;
+
+use App\Member;
 
 class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('members.index')->with(['members' => Member::byTak()]);
+        $view = 'members.tak';
+        if (Auth::user()->hasPermission('administratie')) {
+            $members = Member::byTak();
+            $view = 'members.index';
+        }
+        else { $members = Member::where(['tak_id' => Auth::user()->member()->tak_id, 'leiding' => 0])->get(); }
+        return view($view)->with(['members' => $members]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($tak)
     {
-        return view('members.create');
+    	$tak = Tak::where('name', 'LIKE', '%'.$tak.'%')->first();
+        return view('members.create')->with(['tak' => $tak]);
     }
 
     /**
@@ -37,16 +48,16 @@ class MemberController extends Controller
     {
         $this->validate($request, [
             'firstname' => 'required',
-            'name' => 'required|max:255',
+            'name'      => 'required|max:255',
             'birthdate' => 'required|max:255',
-            'address' => 'required|max:255',
-            'zip' => 'required|max:10',
-            'city' => 'required|max:255',
-            'tel' => 'min:9',
-            'gsm' => 'min:10',
-            'email' => 'email',
-            'tak' => 'required|max:255',
-            'year' => 'required|max:255'
+            'address'   => 'required|max:255',
+            'zip'       => 'required|max:10',
+            'city'      => 'required|max:255',
+            'tel'       => 'min:9',
+            'gsm'       => 'min:10',
+            'email'     => 'email',
+            'tak_id'    => 'required',
+            'year'      => 'required|max:255'
         ]);
 
         $input = $request->all();
@@ -55,14 +66,14 @@ class MemberController extends Controller
         $member->save();
 
         Session::flash('success', 'Lid succesvol toegevoegd');
-        return redirec()->route('members.index');
+        return redirect()->route('ledenlijst.index');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Member $member)
     {
@@ -105,11 +116,22 @@ class MemberController extends Controller
 
         $input = $request->all();
 
-        $member = new Member($input);
+        $member->firstname  = $input['firstname'];
+        $member->name       = $input['name'];
+        $member->birthdate  = $input['birthdate'];
+        $member->address    = $input['address'];
+        $member->zip        = $input['zip'];
+        $member->city       = $input['city'];
+        $member->tel        = $input['tel'];
+        $member->gsm        = $input['gsm'];
+        $member->email      = $input['email'];
+        $member->tak        = $input['tak'];
+        $member->year       = $input['year'];
+
         $member->save();
 
-        Session::flash('success', 'Lid succesvol toegevoegd');
-        return redirec()->route('members.index');
+        Session::flash('success', 'Lid succesvol gewijzigd');
+        return redirect()->route('ledenlijst.index');
     }
 
     /**
@@ -120,7 +142,31 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        Member::destroy($member);
-        return redirect()->route('members.index');
+        $member->delete();
+        return redirect()->route('ledenlijst.index');
+    }
+
+    public function togglePaid(Request $request, $id) {
+        $member = Member::find($id);
+        $member->paid = !$member->paid;
+        $member->save();
+    }
+
+    public function excelify() {
+        Excel::create('Ledenlijst '.date('d m Y'), function ($excel) {
+
+            // Set the title
+            $excel->setTitle('Ledenlijst');
+            // Chain the setters
+            $excel->setCreator('18bp.be')
+                ->setCompany('18BP');
+            // Call them separately
+            $excel->setDescription('Up-to-date ledenlijst');
+
+            $excel->sheet('Ledenlijst', function ($sheet) {
+                $members = Member::byTak();
+                $sheet->loadView('excel.members')->with('members', $members);
+            });
+        })->export('xls');
     }
 }

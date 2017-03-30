@@ -21,6 +21,10 @@ class RolesTableSeeder extends Seeder
                 'description'   => 'Verantwoordelijke Groepsadministratie: volledige toegang tot ledenlijsten en wachtlijsten',
             ],
             [
+                'name'          => 'Redactie',
+                'description'   => 'Beheert de nieuwsberichten en de schakeltjes op de website',
+            ],
+            [
                 'name'          => 'groepsleiding',
                 'description'   => 'Volledige toegang tot administratie',
             ],

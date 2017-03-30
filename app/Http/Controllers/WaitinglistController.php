@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Waitinglist;
 use Illuminate\Http\Request;
+use Session;
 
 class WaitinglistController extends Controller
 {
@@ -14,7 +15,7 @@ class WaitinglistController extends Controller
      */
     public function index()
     {
-        //
+        return view('waitinglist.index')->with(['waitinglist' => Waitinglist::byTak()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class WaitinglistController extends Controller
      */
     public function create()
     {
-        //
+        return view('waitinglist.create');
     }
 
     /**
@@ -35,7 +36,27 @@ class WaitinglistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'firstname' => 'required',
+            'name'      => 'required|max:255',
+            'birthdate' => 'required|max:255',
+            'address'   => 'required|max:255',
+            'zip'       => 'required|max:10',
+            'city'      => 'required|max:255',
+            'tel'       => 'min:9',
+            'gsm'       => 'min:10',
+            'email'     => 'email',
+            'tak'       => 'required|max:255',
+            'year'      => 'required|max:255'
+        ]);
+
+        $input = $request->all();
+
+        $waitinglist = new Waitinglist($input);
+        $waitinglist->save();
+
+        Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' toegevoegd');
+        return redirect()->route('wachtlijst.index');
     }
 
     /**
@@ -46,7 +67,7 @@ class WaitinglistController extends Controller
      */
     public function show(Waitinglist $waitinglist)
     {
-        //
+        return view('waitinglist.show')->with(['kid' => $waitinglist]);
     }
 
     /**
@@ -57,7 +78,7 @@ class WaitinglistController extends Controller
      */
     public function edit(Waitinglist $waitinglist)
     {
-        //
+        return view('waitinglist.edit')->with(['kid' => $waitinglist]);
     }
 
     /**
@@ -69,7 +90,38 @@ class WaitinglistController extends Controller
      */
     public function update(Request $request, Waitinglist $waitinglist)
     {
-        //
+        $this->validate($request, [
+            'firstname' => 'required',
+            'name'      => 'required|max:255',
+            'birthdate' => 'required|max:255',
+            'address'   => 'required|max:255',
+            'zip'       => 'required|max:10',
+            'city'      => 'required|max:255',
+            'tel'       => 'min:9',
+            'gsm'       => 'min:10',
+            'email'     => 'email',
+            'tak'       => 'required|max:255',
+            'year'      => 'required|max:255'
+        ]);
+
+        $input = $request->all();
+
+        $waitinglist->firstname  = $input['firstname'];
+        $waitinglist->name       = $input['name'];
+        $waitinglist->birthdate  = $input['birthdate'];
+        $waitinglist->address    = $input['address'];
+        $waitinglist->zip        = $input['zip'];
+        $waitinglist->city       = $input['city'];
+        $waitinglist->tel        = $input['tel'];
+        $waitinglist->gsm        = $input['gsm'];
+        $waitinglist->email      = $input['email'];
+        $waitinglist->tak        = $input['tak'];
+        $waitinglist->year       = $input['year'];
+
+        $waitinglist->save();
+
+        Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' gewijzigd');
+        return redirect()->route('waitinglist.index');
     }
 
     /**
@@ -80,6 +132,8 @@ class WaitinglistController extends Controller
      */
     public function destroy(Waitinglist $waitinglist)
     {
-        //
+        $waitinglist->delete();
+        Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' verwijderd');
+        return redirect()->route('waitinglist.index');
     }
 }

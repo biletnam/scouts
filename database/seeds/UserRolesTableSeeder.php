@@ -13,8 +13,12 @@ class UserRolesTableSeeder extends Seeder
     {
         DB::table('user_roles')->insert([
             [
-                'user_id'   => 2,
+                'user_id'   => 1,
                 'role_id'   => 1
+            ],
+            [
+                'user_id'   => 2,
+                'role_id'   => 3
             ],
             [
                 'user_id'   => 3,
@@ -22,11 +26,11 @@ class UserRolesTableSeeder extends Seeder
             ],
             [
                 'user_id'   => 4,
-                'role_id'   => 3
+                'role_id'   => 4
             ],
             [
                 'user_id'   => 5,
-                'role_id'   => 4
+                'role_id'   => 5
             ],
             [
                 'user_id'   => 6,
@@ -34,11 +38,11 @@ class UserRolesTableSeeder extends Seeder
             ],
             [
                 'user_id'   => 7,
-                'role_id'   => 5
+                'role_id'   => 4
             ],
             [
                 'user_id'   => 8,
-                'role_id'   => 4
+                'role_id'   => 5
             ],
             [
                 'user_id'   => 9,
@@ -50,18 +54,14 @@ class UserRolesTableSeeder extends Seeder
             ],
             [
                 'user_id'   => 11,
-                'role_id'   => 5
-            ],
-            [
-                'user_id'   => 12,
                 'role_id'   => 4
             ],
             [
-                'user_id'   => 13,
+                'user_id'   => 12,
                 'role_id'   => 5
             ],
             [
-                'user_id'   => 14,
+                'user_id'   => 13,
                 'role_id'   => 4
             ],
         ]);

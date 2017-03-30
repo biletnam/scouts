@@ -16,9 +16,10 @@ class CreateTakkenTable extends Migration
         Schema::create('takken', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
-            $table->string('account');
-            $table->text('description');
+            $table->string('email')->nullable();
+            $table->string('account')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('active');
         });
     }
 

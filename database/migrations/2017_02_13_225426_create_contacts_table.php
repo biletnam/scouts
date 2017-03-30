@@ -19,6 +19,9 @@ class CreateContactsTable extends Migration
             $table->string('tel');
             $table->string('gsm');
             $table->string('email');
+
+            // Has the contact unsubscribed from the general mailing list
+            $table->boolean('unsubscribed')->default(0);
         });
     }
 

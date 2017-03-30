@@ -10,11 +10,7 @@ class Tak extends Model
     public $timestamps = false;
 
     public function leaders() {
-        return User::select('users.*', 'members.firstname', 'members.name', 'members.address', 'members.zip', 'members.city', 'members.gsm', 'members.tel')
-                    ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
-                    ->join('members', 'users.member_id', '=', 'members.id')
-                    ->where('user_roles.role_id', 5)
-                    ->where('tak_id', $this->id)->get();
+	    return $this->hasMany('App\Member')->where('leiding', 1);
     }
 
     public function takleiding() {
@@ -23,5 +19,9 @@ class Tak extends Model
                     ->join('members', 'users.member_id', '=', 'members.id')
                     ->where('user_roles.role_id', 4)
                     ->where('tak_id', $this->id)->first();
+    }
+
+    public function members() {
+    	return $this->hasMany('App\Member')->where('leiding', 0);
     }
 }

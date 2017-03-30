@@ -19,7 +19,7 @@ class PageController extends Controller
     public function geschiedenis() { return view('den18.geschiedenis'); }
     public function uniform() { return view('den18.uniform'); }
 
-    public function contact() { return view('pages.inschrijven'); }
+    public function contact() { return view('pages.contact'); }
 
     public function dashboard() { return view('pages.dashboard'); }
 

@@ -38,8 +38,8 @@
                 <a href="leiding/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
             </li>
             @if (Auth::user()->hasPermission('nieuws'))
-                <li {{ (Request::is('leiding/nieuws')) ? 'class="active"' : '' }}>
-                    <a href="leiding/nieuws">Nieuws</a>
+                <li {{ (Request::is('nieuws')) ? 'class="active"' : '' }}>
+                    <a href="{{ route('nieuws.index') }}">Nieuws</a>
                 </li>
             @endif
             @if (Auth::user()->hasPermission('account-management'))
@@ -60,7 +60,7 @@
 </div>
 <div class="container" id="leiding">
     <img id="background-img" src="img/leidingkenteken.jpg" alt="leidingkenteken">
-    @if (strpos(Request::url(), 'edit') !== false)
+    @if (strpos(Request::url(), 'edit') === false && strpos(Request::url(), 'create') === false)
         <div class="row">
             <div class="four-fifth">
                 @yield('content')

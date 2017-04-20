@@ -27,23 +27,20 @@ Route::get('contact', 'PageController@contact')->name('contact');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::resource('schakeltje', 'SchakeltjeController', ['only' => ['store', 'destroy']]);
+	Route::get('/', 'PageController@dashboard');
+	Route::get('/dashboard', 'PageController@dashboard');
+	Route::get('/nuttig', 'PageController@nuttig')->name('nuttig');
 
-	Route::group(['prefix' => 'leiding'], function () {
-		Route::get('/', 'PageController@dashboard');
-		Route::get('/dashboard', 'PageController@dashboard');
-		Route::get('/nuttig', 'PageController@nuttig')->name('nuttig');
+    Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');
+    Route::resource('ledenlijst', 'MemberController', ['except' => 'create', 'parameters' => ['ledenlijst' => 'member']]);
+    Route::get('/ledenlijst/{tak?}/create', 'MemberController@create')->name('ledenlijst.create');
+    Route::post('/ledenlijst/toggle-paid/{id}', 'MemberController@togglePaid');
 
-	    Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');
-	    Route::resource('ledenlijst', 'MemberController', ['except' => 'create', 'parameters' => ['ledenlijst' => 'member']]);
-	    Route::get('/ledenlijst/{tak?}/create', 'MemberController@create')->name('ledenlijst.create');
-	    Route::post('/ledenlijst/toggle-paid/{id}', 'MemberController@togglePaid');
+    Route::get('/wachtlijst/excelify', 'WaitinglistController@excelify')->name('wachtlijst.excelify');
+    Route::resource('wachtlijst', 'WaitinglistController');
+    Route::get('/wachtlijst/{tak?}/create', 'WaitinglistController@create')->name('wachtlijst.create');
+    Route::post('/wachtlijst/register', 'WaitinglistController@register')->name('wachtlijst.register');
 
-	    Route::get('/wachtlijst/excelify', 'WaitinglistController@excelify')->name('wachtlijst.excelify');
-	    Route::resource('wachtlijst', 'WaitinglistController');
-	    Route::get('/wachtlijst/{tak?}/create', 'WaitinglistController@create')->name('wachtlijst.create');
-	    Route::post('/wachtlijst/register', 'WaitinglistController@register')->name('wachtlijst.register');
-
-	    Route::resource('gebruikers', 'UserController');
-		Route::resource('nieuws', 'ArticleController', ['except' => ['índex']]);
-	});
+    Route::resource('gebruikers', 'UserController');
+	Route::resource('nieuws', 'ArticleController', ['except' => 'índex', 'parameters' => ['nieuws' => 'article']]);
 });

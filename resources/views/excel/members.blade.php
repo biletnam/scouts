@@ -18,7 +18,7 @@
             <tbody>
             @foreach($members as $index => $tak)
                 <tr>
-                    <td colspan="11"><b>{{ ($index == 'jojos') ? 'Jojo\'s' : ucfirst($index) }}</b></td>
+                    <td colspan="11"><h2>{{ ($index == 'jojos') ? 'Jojo\'s' : ucfirst($index) }}</h2></td>
                 </tr>
                 @foreach($tak as $member)
                     <tr>

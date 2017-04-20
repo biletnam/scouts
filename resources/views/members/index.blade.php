@@ -64,6 +64,7 @@
                                     <td>
                                         <form action="{{ route('ledenlijst.destroy', ['member' => $member]) }}" class="delete" method="POST">
                                             {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit">
                                                 <i class="fa fa-trash"></i>

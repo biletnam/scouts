@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Waitinglist;
 use Illuminate\Http\Request;
+use Excel;
 use Session;
+
+use App\Waitinglist;
 
 class WaitinglistController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -21,7 +23,7 @@ class WaitinglistController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -63,7 +65,7 @@ class WaitinglistController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Waitinglist  $waitinglist
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Waitinglist $waitinglist)
     {
@@ -74,7 +76,7 @@ class WaitinglistController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Waitinglist  $waitinglist
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Waitinglist $waitinglist)
     {
@@ -135,5 +137,23 @@ class WaitinglistController extends Controller
         $waitinglist->delete();
         Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' verwijderd');
         return redirect()->route('waitinglist.index');
+    }
+
+    public function excelify() {
+	    Excel::create('wachtlijst '.date('d m Y'), function ($excel) {
+
+		    // Set the title
+		    $excel->setTitle('wachtlijst');
+		    // Chain the setters
+		    $excel->setCreator('18bp.be')
+			    ->setCompany('18BP');
+		    // Call them separately
+		    $excel->setDescription('Up-to-date wachtlijst');
+
+		    $excel->sheet('wachtlijst', function ($sheet) {
+			    $members = Waitinglist::byTak();
+			    $sheet->loadView('excel.waitinglist')->with('members', $members);
+		    });
+	    })->export('xls');
     }
 }

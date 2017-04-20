@@ -7,7 +7,9 @@ use Auth;
 use Excel;
 use Session;
 
+use App\Contact;
 use App\Member;
+use App\Tak;
 
 class MemberController extends Controller
 {
@@ -62,10 +64,17 @@ class MemberController extends Controller
 
         $input = $request->all();
 
-        $member = new Member($input);
-        $member->save();
+        $contact = $input['contact'];
+	    unset($input['contact']);
 
-        Session::flash('success', 'Lid succesvol toegevoegd');
+	    $member = new Member($input);
+	    $member->save();
+
+	    $contact = new Contact($contact);
+	    $contact->member_id = $member->id;
+	    $contact->save();
+
+	    Session::flash('success', 'Lid succesvol toegevoegd');
         return redirect()->route('ledenlijst.index');
     }
 
@@ -84,7 +93,7 @@ class MemberController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Member  $member
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Member $member)
     {

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
 use Illuminate\Http\Request;
+use Session;
+use App\Article;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -35,14 +36,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$this->validate($request, [
+			'title' => 'required',
+			'body' => 'required'
+		]);
+
+		$input = $request->all();
+
+		$article = new Article($input);
+		$article->save();
+
+		Session::flash('success', 'Artikel toegevoegd');
+		return redirect()->route('nieuws.index');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Article $article)
     {
@@ -53,7 +65,7 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Article $article)
     {
@@ -69,7 +81,19 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+	    $this->validate($request, [
+		    'title' => 'required',
+		    'body' => 'required'
+	    ]);
+
+	    $input = $request->all();
+
+	    $article->title = $input['title'];
+	    $article->body = $input['body'];
+	    $article->save();
+
+	    Session::flash('success', 'Artikel toegevoegd');
+	    return redirect()->route('nieuws.index');
     }
 
     /**
@@ -81,6 +105,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         Article::destroy($article);
-        return redirect()->route('articles.index');
+        return redirect()->route('nieuws.index');
     }
 }

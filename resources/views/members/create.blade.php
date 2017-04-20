@@ -5,9 +5,10 @@
         <main>
             @include('partial.errors')
             @include('partial.success')
-            <h3>Voeg een lid toe bij {{ $tak }}</h3>
+            <h3>Voeg een lid toe bij {{ $tak->name }}</h3>
             <form action="{{ route('ledenlijst.store') }}" method="POST" class="edit">
                 {{ csrf_field() }}
+                <h4>Persoonsgegevens</h4>
                 <ul>
                     <li>
                         <label for="firstname">Voornaam</label>
@@ -34,18 +35,6 @@
                         <input id="city" type="text" name="city" value="{{ old('city') }}">
                     </li>
                     <li>
-                        <label for="tel">Telefoonnummer</label>
-                        <input id="tel" type="text" name="tel" value="{{ old('tel') }}">
-                    </li>
-                    <li>
-                        <label for="gsm">GSM-nummer</label>
-                        <input id="gsm" type="text" name="gsm" value="{{ old('gsm') }}">
-                    </li>
-                    <li>
-                        <label for="email">E-mailadres</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}">
-                    </li>
-                    <li>
                         <label>Tak: <b>{{ $tak->name }}</b></label>
                         <input type="hidden" name="tak" value="{{ $tak->id }}">
                     </li>
@@ -68,6 +57,35 @@
                     <li>
                         <label for="betaald">Betaald</label>
                         <input type="checkbox" name="paid" value="1">
+                    </li>
+                </ul>
+                <h4>Contactgegevens</h4>
+                <ul>
+                    <li>
+                        <span><input type="radio" name="own_contact" value="true"> Eigen gegevens</span>
+                    </li>
+                    <li>
+                        <span><input type="radio" name="own_contact" value="false"> Gegevens voogd</span>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>
+                                <label for="contact-name">Naam contact</label>
+                                <input id="contact[name]" type="text">
+                            </li>
+                            <li>
+                                <label for="tel">Telefoonnummer</label>
+                                <input id="contact[tel]" type="text" name="tel" value="{{ old('tel') }}">
+                            </li>
+                            <li>
+                                <label for="gsm">GSM-nummer</label>
+                                <input id="contact[gsm]" type="text" name="gsm" value="{{ old('gsm') }}">
+                            </li>
+                            <li>
+                                <label for="email">E-mailadres</label>
+                                <input id="contact[email]" type="email" name="email" value="{{ old('email') }}">
+                            </li>
+                        </ul>
                     </li>
                     <li><button type="submit" name="submit" class="btn-submit">Opslaan</button><a class="cancel" href="leiding/ledenlijst">Annuleer</a></li>
                 </ul>

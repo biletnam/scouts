@@ -1,8 +1,9 @@
+/.idea
+/.sass-cache
+/.env
+/database
 /public/storage
 /public/hot
 /public/schakeltjes
 /storage/*.key
 /vendor
-/.idea
-/.sass-cache
-/.env

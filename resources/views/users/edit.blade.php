@@ -42,22 +42,31 @@
 		@if (!empty($user->roles))
 			<ul id="roles">
 				@foreach ($user->roles as $role)
-					<li><?= ucfirst($role->name) ?> <a href="leiding/gebruikers/schrap-functie/<?= $role->lr_id ?>" class="delete-role"><i class="fa fa-trash"></i></a></li>
+					<li>
+						<span class="float-left">{{ ucfirst($role->name) }}</span>
+						<form action="{{ route('gebruikers.drop-role') }}" class="delete float-left" method="POST">
+							{{ csrf_field() }}
+							{{ method_field('DELETE') }}
+							<input type="hidden" name="user_id" value="{{ $user->id }}">
+							<input type="hidden" name="role_id" value="{{ $role->id }}">
+							<button type="submit"><i class="fa fa-trash"></i></button>
+						</form>
+					</li>
 				@endforeach
 			</ul>
-			<input type="hidden" name="type" value="$CI->db->select('*')->from('roles')->where('name', $role)->row();">
 		@else
 			<p class="empty">Deze leider heeft momenteel geen actieve rollen</p>
 		@endif
 		<a href="" class="add-role"><i class="fa fa-plus"></i> functie toevoegen</a>
-		<form id="add-role" action="leiding/gebruikers/add-role" method="POST">
+		<form id="add-role" action="{{ route('gebruikers.add-role') }}" method="POST">
+			{{ csrf_field() }}
 			<select name="role_id">
 				<option value="0">- Selecteer een functie -</option>
 				@foreach ($roles as $role)
 					<option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
 				@endforeach
 			</select>
-			<input type="hidden" name="leader_id" value="{{ $user->id }}">
+			<input type="hidden" name="user_id" value="{{ $user->id }}">
 			<button type="submit">Functie toevoegen</button>
 		</form>
 	</main>

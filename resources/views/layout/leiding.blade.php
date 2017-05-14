@@ -83,7 +83,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
     $(function() { setTimeout(function() { $('p.success').slideUp(); }, 3000); });
-
+    var base_url = "{{ url('/') }}";
     $('.navbar-toggle').click(function() {
         var nav = $('.navbar-toggle').data('toggle');
         $('.'+nav).stop().slideToggle();

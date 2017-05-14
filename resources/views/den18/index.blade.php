@@ -50,6 +50,9 @@
 				</div>
 
 				@foreach ($takken as $tak)
+					@php
+						$takleiding = $tak->takleiding();
+					@endphp
 					<div class="takken" id="{{ ($tak->name !== 'Jojo\'s') ? strtolower($tak->name) : 'jojos' }}">
 						<h2 class="text-center">{{ $tak->name }} {{ (isset($tak->age)) ? '('.$tak->age.')' : '' }}</h2>
 
@@ -71,23 +74,25 @@
 							<tbody>
 								<tr>
 									<td>
-										{{ $tak->takleiding()->firstname.' '.$tak->takleiding()->name }}
-										{{ ($tak->takleiding()->show_nick) ? ' ('.$tak->takleiding()->nickname.')' : '' }} - TL
+										{{ $takleiding->firstname.' '.$takleiding->name }}
+										{{ ($takleiding->show_nick) ? ' ('.$takleiding->nickname.')' : '' }} - TL
 									</td>
-									<td>{{ $tak->takleiding()->address }}<br>{{ $tak->takleiding()->zip.' '.$tak->takleiding()->city }}</td>
-									<td><a href="mailto:{{ $tak->takleiding()->username }}">{{ $tak->takleiding()->username }}</a></td>
-									<td><a href="{{ preg_replace('/\D/', '', $tak->takleiding()->gsm) }}">{{ $tak->takleiding()->gsm }}</a></td>
+									<td>{{ $takleiding->address }}<br>{{ $takleiding->zip.' '.$takleiding->city }}</td>
+									<td><a href="mailto:{{ $takleiding->username }}">{{ $takleiding->username }}</a></td>
+									<td><a href="{{ preg_replace('/\D/', '', $takleiding->gsm) }}">{{ $takleiding->gsm }}</a></td>
 								</tr>
-								@foreach ($tak->leaders() as $leader)
-									<tr>
-										<td>
-											{{ $leader->firstname.' '.$leader->name }}
-											{{ ($leader->show_nick) ? ' ('.$leader->nickname.')' : '' }}
-										</td>
-										<td>{{ $leader->address }}<br>{{ $leader->zip.' '.$leader->city }}</td>
-										<td><a href="mailt:{{ $leader->username }}">{{ $leader->username }}</a></td>
-										<td><a href="{{ preg_replace('/\D/', '', $leader->gsm) }}">{{ $leader->gsm }}</a></td>
-									</tr>
+								@foreach ($tak->leaders as $leader)
+									@if ($leader->id != $takleiding->id)
+										<tr>
+											<td>
+												{{ $leader->member()->firstname.' '.$leader->member()->name }}
+												{{ ($leader->show_nick) ? ' ('.$leader->nickname.')' : '' }}
+											</td>
+											<td>{{ $leader->member()->address }}<br>{{ $leader->member()->zip.' '.$leader->member()->city }}</td>
+											<td><a href="mailt:{{ $leader->username }}">{{ $leader->username }}</a></td>
+											<td><a href="{{ preg_replace('/\D/', '', $leader->gsm) }}">{{ $leader->member()->gsm }}</a></td>
+										</tr>
+									@endif
 								@endforeach
 							</tbody>
 						</table>
@@ -102,14 +107,14 @@
 					<br>
 					<div class="row">
 						@foreach ($leaders as $leader)
-							@if ($leader->grl)
+							@if ($leader->grl())
 								<div class="one-half leider">
 									<p class="pull-left">
-										{{ $leader->firstname . ' ' . $leader->name }}
+										{{ $leader->member()->firstname . ' ' . $leader->member()->name }}
 										{{ ($leader->show_nick) ? '<br>(' . $leader->nickname . ')' : '' }}
 										<br>
 										<a href="mailto:{{ $leader->username }}">{{ $leader->username }}</a><br>
-										<a href="tel:">{{ $leader->gsm }}</a>
+										<a href="tel:">{{ $leader->member()->gsm }}</a>
 									</p>
 									<div class="pasfoto">
 										<img class="pull-right" src="assets/img/leaders/{{ $leader->img }}" alt="{{ $leader->firstname . ' ' . $leader->name }}">
@@ -122,17 +127,17 @@
 					<h2 class="text-center clear-both">Leiding</h2>
 					<div class="row">
 						@foreach ($leaders as $leader)
-							@if (!$leader->grl && $leader->active)
+							@if (!$leader->grl() && $leader->active)
 								<div class="one-half leider">
 									<p class="pull-left">
-										{{ $leader->firstname }} {{ $leader->name }}
+										{{ $leader->member()->firstname }} {{ $leader->member()->name }}
 										@if ($leader->show_nick)
 											<br>
 											{{ '(' . $leader->nickname . ')' }}
 										@endif
 									</p>
 									<div class="pasfoto">
-										<img class="pull-right" src="img/leaders/{{ $leader->img }}" alt="{{ $leader->firstname . ' ' . $leader->name }}">
+										<img class="pull-right" src="img/leaders/{{ $leader->img }}" alt="{{ $leader->member()->firstname . ' ' . $leader->member()->name }}">
 										<div class="overlay"><span>Klik om te vergroten</span></div>
 									</div>
 								</div>

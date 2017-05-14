@@ -6,7 +6,7 @@
         @foreach ($users as $index => $type)
             @if (!$type->isEmpty())
                 <h3>{{ ucfirst($index) }}</h3>
-                <a href="leiding/gebruikers/edit?type=<?= $index ?>"><span class="fa fa-plus"></span> Voeg toe</a>
+                <a href="{{ route('gebruikers.create', [$index]) }}"><span class="fa fa-plus"></span> Voeg toe</a>
                 <table class="table table-striped users">
                     <thead>
                     <tr>
@@ -26,6 +26,7 @@
                             <td>
                                 <form action="{{ route('gebruikers.destroy', [$leader]) }}" class="delete" method="POST">
                                     {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit">
                                         <i class="fa fa-trash"></i>

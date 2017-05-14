@@ -12,6 +12,7 @@
                     <th>Adres</th>
                     <th>Postcode</th>
                     <th>Plaats</th>
+                    <th>Jaar</th>
                     <th>Betaald?</th>
                 </tr>
             </thead>

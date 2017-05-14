@@ -24,11 +24,13 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param string $type
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(string $type)
     {
-        return view('users.create');
+        $takken = Tak::get();
+        return view('users.create')->withTakken($takken);
     }
 
     /**
@@ -125,6 +127,18 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->route('users.index');
+        return redirect()->route('gebruikers.index');
+    }
+
+    public function addRole(Request $request) {
+        $user = User::find($request->get('user_id'));
+        $user->roles()->attach($request->get('role_id'));
+        return redirect()->back();
+    }
+
+    public function dropRole(Request $request) {
+        $user = User::find($request->get('user_id'));
+        $user->roles()->detach($request->get('role_id'));
+        return redirect()->back();
     }
 }

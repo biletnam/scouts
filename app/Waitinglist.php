@@ -8,6 +8,7 @@ class Waitinglist extends Model
 {
     protected $fillable = ['firstname', 'name', 'birthdate', 'address', 'zip', 'city', 'tel', 'gsm', 'email', 'tak', 'priority', 'year'];
     public $timestamps = false;
+    protected $table = 'waitinglist';
 
     protected function byTak() {
         return [

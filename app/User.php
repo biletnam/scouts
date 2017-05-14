@@ -57,6 +57,15 @@ class User extends Authenticatable
 
     public function dropRole($role_id) { $this->roles()->detach($role_id); }
 
+    public function grl() {
+        foreach ($this->roles as $role) {
+            if ($role->name === 'groepsleiding') {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function hasPermission($permission) {
         foreach ($this->roles as $role) {
         	$result = $role->hasPermission($permission);

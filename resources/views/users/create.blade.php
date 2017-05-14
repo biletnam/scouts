@@ -9,11 +9,7 @@
             <ul>
                 <li>
                     <label>Selecteer lid</label>
-                    <select name="member_id" id="leader">
-                        @foreach ($members as $member)
-                            <option value="{{ $member->id }}">{{ $member->firstname.' '.$member->name }}</option>
-                        @endforeach
-                    </select>
+                    <select name="member_id" id="leader"></select>
                 </li>
                 <li>
                     <input type="checkbox" name="active" value="1" id="active" checked>

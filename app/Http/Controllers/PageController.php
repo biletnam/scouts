@@ -15,7 +15,7 @@ class PageController extends Controller
 
     public function inschrijven() { return view('pages.inschrijven'); }
 
-    public function den18() { return view('den18.index')->with(['takken' => Tak::get(), 'leaders' => User::getExt()]); }
+    public function den18() { return view('den18.index')->with(['takken' => Tak::where('active', 1)->get(), 'leaders' => User::where('username', '!=', 'leiding@18bp.be')->get()]); }
     public function geschiedenis() { return view('den18.geschiedenis'); }
     public function uniform() { return view('den18.uniform'); }
 

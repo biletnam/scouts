@@ -70,11 +70,17 @@ class MemberController extends Controller
 		$member = new Member($input);
 		$member->save();
 
-		$contact = new Contact($contact);
-		$contact->member_id = $member->id;
-		$contact->save();
+		if ($input['own_contact'] === 1) {
+			$input['email'] = $contact['email'];
+			$input['tel'] = $contact['tel'];
+			$input['gsm'] = $contact['gsm'];
+		} else {
+			$contact = new Contact($contact);
+			$contact->member_id = $member->id;
+			$contact->save();
 
-		$member->contacts()->attach($contact->id);
+			$member->contacts()->attach($contact->id);
+		}
 
 		Session::flash('success', 'Lid succesvol toegevoegd');
 		return redirect()->route('ledenlijst.index');

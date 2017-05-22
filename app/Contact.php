@@ -10,6 +10,6 @@ class Contact extends Model
 	protected $fillable = ['name', 'tel', 'gsm', 'email', 'member_id'];
 
 	public function member() {
-		return hasOne('App\Member');
+		return belongsToMany('App\Member', 'member_contacts');
 	}
 }

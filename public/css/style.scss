@@ -235,6 +235,12 @@ form {
 			input {display: none;}
 		}
 	}
+	&.delete {
+		button[type="submit"] {
+			border: none; background-color: transparent; color: #f00; transition: opacity .2s;
+			&:hover { opacity: .7; }
+		}
+	}
 	ul {
 		li {
 			margin-bottom: 1em;
@@ -495,3 +501,7 @@ button.givers, button.jins { margin-left: 30px;}
 .cke_top, .cke_bottom { background: #ECECEC !important; }
 .cke_toolgroup, .cke_combo_button { background: #F8F8F8 !important; border-radius: 0 !important; }
 // END CKEDITOR //
+
+@media print {
+	#background-img, #leiding .one-fifth, #checks { display: none; }
+}

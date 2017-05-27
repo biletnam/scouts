@@ -27,6 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return User
+     **/
     protected function getExt() {
         return User::select('users.*', 'members.firstname', 'members.name', 'members.address',
                             'members.zip', 'members.city', 'members.gsm', 'members.tel')
@@ -34,6 +37,9 @@ class User extends Authenticatable
                     ->get();
     }
 
+    /**
+     * @return array
+     **/
     protected function getPerRole() {
         $roles = Role::get();
         $result = [];
@@ -47,16 +53,23 @@ class User extends Authenticatable
         return $result;
     }
 
-    public function member() {
-        return Member::find($this->member_id);
-    }
+    public function member() { return $this->belongsTo('App\Member'); }
 
     public function roles() { return $this->belongsToMany('App\Role', 'user_roles'); }
 
+    /**
+     * @param int $role_id
+     **/
     public function addRole($role_id) { $this->roles()->attach($role_id); }
 
+    /**
+     * @param int $role_id
+     **/
     public function dropRole($role_id) { $this->roles()->detach($role_id); }
 
+    /**
+     * @return bool
+     **/
     public function grl() {
         foreach ($this->roles as $role) {
             if ($role->name === 'groepsleiding') {
@@ -66,6 +79,10 @@ class User extends Authenticatable
         return false;
     }
 
+    /**
+     * @param string $permission
+     * @return bool
+     **/
     public function hasPermission($permission) {
         foreach ($this->roles as $role) {
         	$result = $role->hasPermission($permission);

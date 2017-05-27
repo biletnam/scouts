@@ -12,6 +12,8 @@
 			{{ csrf_field() }}
 			<input id="birthdate" type="checkbox" name="birthdate" value="birthdate" {{ (in_array('birthdate', $args)) ? 'checked' : '' }}>
 			<label for="birthdate">Geboortedatum</label>
+			<input id="address" type="checkbox" name="address" value="address" {{ (in_array('address', $args)) ? 'checked' : '' }}>
+			<label for="address">Adres</label>
 			<input id="gsm" type="checkbox" name="gsm" value="gsm" {{ (in_array('gsm', $args)) ? 'checked' : '' }}>
 			<label for="gsm">GSM-nummer</label>
 			<input id="tel" type="checkbox" name="tel" value="tel" {{ (in_array('tel', $args)) ? 'checked' : '' }}>
@@ -30,6 +32,9 @@
 					<th>Achternaam</th>
 					@if (in_array('birthdate', $args))
 						<th>Geboortedatum</th>
+					@endif
+					@if (in_array('address', $args))
+						<th>Adres</th>
 					@endif
 					@if (in_array('gsm', $args))
 						<th>GSM</th>
@@ -53,6 +58,9 @@
 						<td><?= $member->name ?></td>
 						@if (in_array('birthdate', $args))
 							<td>{{ $member->birthdate }}</td>
+						@endif
+						@if (in_array('address', $args))
+							<td>{{ $member->address }}<br>{{ $member->zip }} {{ $member->city }}</td>
 						@endif
 						@if (in_array('gsm', $args))
 							<td>

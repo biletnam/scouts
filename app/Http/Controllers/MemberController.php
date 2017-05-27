@@ -25,7 +25,10 @@ class MemberController extends Controller
 			$members = Member::byTak();
 			$view = 'members.index';
 		}
-		else { $members = Member::where(['tak_id' => Auth::user()->member()->tak_id, 'leiding' => 0])->get(); }
+		else {
+			$members = Member::where(['tak_id' => Auth::user()->member()->tak_id, 'leiding' => 0])
+								->orderBy('year')->orderBy('firstname')->get();
+		}
 		return view($view)->withMembers($members);
 	}
 
@@ -76,7 +79,6 @@ class MemberController extends Controller
 			$input['gsm'] = $contact['gsm'];
 		} else {
 			$contact = new Contact($contact);
-			$contact->member_id = $member->id;
 			$contact->save();
 
 			$member->contacts()->attach($contact->id);
@@ -161,6 +163,10 @@ class MemberController extends Controller
 		return redirect()->route('ledenlijst.index');
 	}
 
+	/**
+	 * @param Request $request
+	 * @param int $id
+	 **/
 	public function togglePaid(Request $request, $id) {
 		$member = Member::find($id);
 		$member->paid = !$member->paid;
@@ -195,11 +201,18 @@ class MemberController extends Controller
 		return Member::getAjax($request->get('q'));
 	}
 
+	/**
+	 * Show the print-optimized table for the given Tak
+	 *
+	 * @param  Request $request
+	 * @param  string $tak
+	 * @return \Illuminate\View\View
+	 */
 	public function print(Request $request, string $tak) {
 		if ($tak === 'jojos') { $tak = 'Jojo\'s'; }
 		else { $tak = ucfirst($tak); }
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') { $args = $request->only('birthdate', 'email', 'tel', 'gsm', 'year'); }
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') { $args = $request->only('birthdate', 'email', 'tel', 'gsm', 'year', 'address'); }
 		else { $args = []; }
 
 		$tak = Tak::where('name', $tak)->first();

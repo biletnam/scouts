@@ -10,6 +10,9 @@ class Waitinglist extends Model
     public $timestamps = false;
     protected $table = 'waitinglist';
 
+    /**
+     * @return array
+     **/
     protected function byTak() {
         return [
                 'kapoenen' => [

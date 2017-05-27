@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Spatie\Newsletter\NewsletterServiceProvider::class,
     ],
 
     /*
@@ -229,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
+        'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
     ],
 
 ];

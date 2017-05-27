@@ -85,12 +85,12 @@
 									@if ($leader->id != $takleiding->id)
 										<tr>
 											<td>
-												{{ $leader->member()->firstname.' '.$leader->member()->name }}
+												{{ $leader->member->firstname.' '.$leader->member->name }}
 												{{ ($leader->show_nick) ? ' ('.$leader->nickname.')' : '' }}
 											</td>
-											<td>{{ $leader->member()->address }}<br>{{ $leader->member()->zip.' '.$leader->member()->city }}</td>
+											<td>{{ $leader->member->address }}<br>{{ $leader->member->zip.' '.$leader->member->city }}</td>
 											<td><a href="mailt:{{ $leader->username }}">{{ $leader->username }}</a></td>
-											<td><a href="{{ preg_replace('/\D/', '', $leader->gsm) }}">{{ $leader->member()->gsm }}</a></td>
+											<td><a href="{{ preg_replace('/\D/', '', $leader->gsm) }}">{{ $leader->member->gsm }}</a></td>
 										</tr>
 									@endif
 								@endforeach
@@ -110,11 +110,11 @@
 							@if ($leader->grl())
 								<div class="one-half leider">
 									<p class="pull-left">
-										{{ $leader->member()->firstname . ' ' . $leader->member()->name }}
+										{{ $leader->member->firstname . ' ' . $leader->member->name }}
 										{{ ($leader->show_nick) ? '<br>(' . $leader->nickname . ')' : '' }}
 										<br>
 										<a href="mailto:{{ $leader->username }}">{{ $leader->username }}</a><br>
-										<a href="tel:">{{ $leader->member()->gsm }}</a>
+										<a href="tel:">{{ $leader->member->gsm }}</a>
 									</p>
 									<div class="pasfoto">
 										<img class="pull-right" src="assets/img/leaders/{{ $leader->img }}" alt="{{ $leader->firstname . ' ' . $leader->name }}">
@@ -130,14 +130,14 @@
 							@if (!$leader->grl() && $leader->active)
 								<div class="one-half leider">
 									<p class="pull-left">
-										{{ $leader->member()->firstname }} {{ $leader->member()->name }}
+										{{ $leader->member->firstname }} {{ $leader->member>name }}
 										@if ($leader->show_nick)
 											<br>
 											{{ '(' . $leader->nickname . ')' }}
 										@endif
 									</p>
 									<div class="pasfoto">
-										<img class="pull-right" src="img/leaders/{{ $leader->img }}" alt="{{ $leader->member()->firstname . ' ' . $leader->member()->name }}">
+										<img class="pull-right" src="img/leaders/{{ $leader->img }}" alt="{{ $leader->member->firstname . ' ' . $leader->member->name }}">
 										<div class="overlay"><span>Klik om te vergroten</span></div>
 									</div>
 								</div>

@@ -56,7 +56,7 @@
                 @include('auth.login-form')
             @else
             	<div id="welkom" class="one-fifth">
-            		<h3>Welkom {{ Auth::user()->member()->firstname }}</h3><br>
+            		<h3>Welkom {{ Auth::user()->member->firstname }}</h3><br>
             		<a href="leiding">Naar de leidingspagina</a><br>
                     <a href="logout">Afmelden</a>
             	</div>

@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('content')
     <main>
-        <h1>Welkom {{ ucfirst(Auth::user()->member()->firstname) }}!</h1>
+        <h1>Welkom {{ ucfirst(Auth::user()->member->firstname) }}!</h1>
 
         <div id="body">
             <p>Dit is het platform voor de lieve leuke lekkere leiding van den 18!</p>

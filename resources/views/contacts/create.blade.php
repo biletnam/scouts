@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="form-group existing">
-				<select name="member_id" id="member"></select>
+				<select name="member" id="member"></select>
 			</div>
 			<div class="form-group contact-form">
 				<div class="row">

@@ -7,7 +7,7 @@
             {{ (strtolower($member->tak) == 'leiding' && isset($member->nickname)) ? '(' . $member->nickname . ')' : '' }}
         </h3>
         <ul class="details">
-            <li>{{ ucfirst($member->tak) }} ({{ $member->year }}ejaars)</li>
+            <li>{{ $member->tak->name }} ({{ $member->year }}ejaars)</li>
             <li>{{ $member->birthdate }}</li>
             <li>{{ $member->address }}<br>{{ $member->zip }} {{ $member->city }}</li>
             <li>

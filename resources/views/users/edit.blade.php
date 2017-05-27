@@ -1,8 +1,8 @@
 @extends('layout.leiding')
-@section('title', $user->member()->firstname.' '.$user->member()->name)
+@section('title', $user->member->firstname.' '.$user->member->name)
 @section('content')
 	<main>
-		<h2>{{ $user->member()->firstname.' '.$user->member()->name }}</h2>
+		<h2>{{ $user->member->firstname.' '.$user->member->name }}</h2>
 		<h3>Gegevens</h3>
 		<form action="{{ route('gebruikers.update', [$user]) }}" method="POST" class="edit">
 			{{ csrf_field() }}

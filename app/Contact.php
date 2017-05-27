@@ -9,7 +9,7 @@ class Contact extends Model
 	public $timestamps = false;
 	protected $fillable = ['name', 'tel', 'gsm', 'email', 'member_id'];
 
-	public function member() {
-		return belongsToMany('App\Member', 'member_contacts');
+	public function members() {
+		return $this->belongsToMany('App\Member', 'member_contacts');
 	}
 }

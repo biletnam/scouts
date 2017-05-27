@@ -26,7 +26,7 @@ class MemberController extends Controller
 			$view = 'members.index';
 		}
 		else {
-			$members = Member::where(['tak_id' => Auth::user()->member()->tak_id, 'leiding' => 0])
+			$members = Member::where(['tak_id' => Auth::user()->member->tak_id, 'leiding' => 0])
 								->orderBy('year')->orderBy('firstname')->get();
 		}
 		return view($view)->withMembers($members);

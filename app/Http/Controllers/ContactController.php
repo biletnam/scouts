@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MailchimpService;
 use Illuminate\Http\Request;
 
 use App\Contact;
 use App\Member;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -37,7 +39,13 @@ class ContactController extends Controller
 		$contact = new Contact($input);
 		$contact->save();
 
-		return redirect()->route('ledenlijst.edit', [$contact->member_id]);
+		$member = Member::find($input['member_id']);
+		$member->contacts()->attach($contact->id);
+
+		$mailchimpService = new MailchimpService();
+		$mailchimpService->addContact($contact->email, $member->tak);
+
+		return redirect()->route('ledenlijst.edit', [$member->id]);
 	}
 
 	/**
@@ -84,6 +92,9 @@ class ContactController extends Controller
 	 */
 	public function destroy(Contact $contact)
 	{
+		$mailchimpService = new MailchimpService();
+		$mailchimpService->removeContact($contact->email);
+
 		$contact->delete();
 		return redirect()->back();
 	}

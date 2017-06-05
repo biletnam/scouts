@@ -3,6 +3,11 @@
 @section('content')
 	<main>
 		<h1>Mailinglijsten</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<a href="{{ route('mailinglijst.new-campaign') }}"><i class="fa fa-plus"></i> Nieuwe mail versturen</a>
+			</div>
+		</div>
 		@foreach($lists as $list)
 			<div class="row">
 				<div class="col-md-12">

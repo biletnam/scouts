@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Newsletter;
 use App\Tak;
+use Newsletter;
 
 /**
  * @property  mailchimp
@@ -11,6 +11,7 @@ use App\Tak;
 class MailchimpService
 {
 	const LIST_SCHAKELTJE = 'schakeltje';
+	const TEMPLATE_ID = 69399;
 
 	public function __construct() {
 		$this->mailchimp = Newsletter::getApi();
@@ -90,5 +91,45 @@ class MailchimpService
 	protected function getMembersForList($list) {
 		$list['members'] = $this->mailchimp->get('lists/'.$list['id'].'/members')['members'];
 		return $list;
+	}
+
+	public function makeCmpaign($list, $subject) {
+		$list_senders = [
+			$this->general      => 'groepsleiding@18bp.be',
+			$this->schakeltje   => 'redactie@18bp.be',
+			$this->kapoenen     => 'kapoenenleiding@18bp.be',
+			$this->welpen       => 'welpenleiding@18bp.be',
+			$this->jojos        => 'jojoleiding@18bp.be',
+			$this->givers       => 'giverleiding@18bp.be',
+		];
+
+		$data = [
+			'type' => 'regular',
+			'recipients' => ['list_id' => $list],
+			'settings' => [
+				'subject_line' => $subject,
+				'title' => $subject,
+				'from_name' => '18BP Corneel Mayné',
+				'reply_to' => $list_senders[$list],
+				'auto_footer' => false,
+			]
+		];
+
+		return $this->mailchimp->post('campaigns', $data);
+	}
+
+	public function sendCampaign(string $body, string $subject, $list) {
+		$campaign = self::makeCmpaign($list,$subject);
+		$data = [
+			'template' => [
+				'id' => self::TEMPLATE_ID,
+				'sections' => [
+					'body' => $body,
+					'header' => '<h2 style="text-align: right; color: #fff;">'.$subject.'</h2>'
+				]
+			],
+		];
+		$this->mailchimp->put('campaigns/'.$campaign['id'].'/content', $data);
+		return $this->mailchimp->post('campaigns/'.$campaign['id'].'/actions/send');
 	}
 }

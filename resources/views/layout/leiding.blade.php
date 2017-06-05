@@ -61,6 +61,8 @@
 		</ul>
 	</div>
 </nav>
+@include('partial.success')
+@include('partial.errors')
 <div class="container" id="leiding">
 	<img id="background-img" src="img/leidingkenteken.jpg" alt="leidingkenteken">
 	@if (strpos(Request::url(), 'edit') === false && strpos(Request::url(), 'create') === false)

@@ -58,9 +58,15 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::resource('gebruikers', 'UserController', ['except' => 'create', 'parameters' => ['gebruiker' => 'user']]);
 	Route::get('/gebruikers/{type?}/create', 'UserController@create')->name('gebruikers.create');
 
+	// Mailings
+	Route::get('mailinglijst/{list}/new', 'MailinglistController@newCampaign')->name('mailinglijst.new-campaign-for-list');
+	Route::get('mailinglijst/new', 'MailinglistController@newCampaign')->name('mailinglijst.new-campaign');
+	Route::post('mailinglijst/send', 'MailinglistController@sendCampaign')->name('mailinglijst.send-campaign');
+
 	// Mailinglists
 	Route::get('mailinglijst', 'MailinglistController@index')->name('mailinglijst.index');
 	Route::get('mailinglijst/{id}', 'MailinglistController@show')->name('mailinglijst.show');
 
 	Route::resource('nieuws', 'ArticleController', ['except' => 'índex', 'parameters' => ['nieuws' => 'article']]);
+
 });

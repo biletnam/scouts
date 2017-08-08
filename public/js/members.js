@@ -51,10 +51,12 @@ $(function() {
     
     if ($('.existing select#member').length > 0) {
         $('.existing select#member').select2({
+	        placeholder: 'Kies een lid',
             ajax: {
                 url: base_url+"/leiding/ledenlijst/get-ajax",
                 dataType: 'json',
                 delay: 250,
+	            minimumInputLength: 1,
                 data: function (params) {
                     return {
                         q: params.term, // search term
@@ -62,13 +64,9 @@ $(function() {
                     };
                 },
                 processResults: function (data, params) {
-                    // parse the results into the format expected by Select2
-                    // since we are using custom formatting functions we do not need to
-                    // alter the remote JSON data, except to indicate that infinite
-                    // scrolling can be used
                     params.page = params.page || 1;
                     return {
-                        results: data.items,
+                        results: data,
                         pagination: {
                             more: (params.page * 30) < data.total_count
                         }
@@ -78,12 +76,20 @@ $(function() {
             },
             escapeMarkup: function (markup) { return markup; },
             // let our custom formatter work
-            minimumInputLength: 1,
-            placeholder: 'Kies een lid',
             templateResult: formatMember,
             // omitted for brevity, see the source of this page
             templateSelection: formatMemberSelection
             // omitted for brevity, see the source of this page
+        });
+
+	    $('.existing select#member').change(function() {
+			$.getJSON('/leiding/contacts/get-for-member-ajax/' + $(this).val(), function(data) {
+				$('.existing .contacts').empty();
+				$.each(data, function (i,v) {
+					var li = '<li><label><input type="checkbox" name="contacts[]" value="' + v.id + '">' + v.name + ' (' + v.email + ')</label></li>';
+					$('.existing .contacts').append(li);
+				});
+			});
         });
     }
 });
@@ -92,8 +98,7 @@ function formatMember(member){
     if (member.loading) {
         return member.text;
     }
-    var result = '<div class="selectbox-result"><div class="col-sm-12"><div class="row"><div class="col-sm-12"><p class="name">'+member.text+"</p></div></div></div></div>";
-    return result;
+    return '<div class="selectbox-result"><div class="col-sm-12"><div class="row"><div class="col-sm-12"><p class="name">'+member.text+"</p></div></div></div></div>";
 }
 
 function formatMemberSelection(a){ return a.text }

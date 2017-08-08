@@ -6,6 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use Excel;
 
+/**
+ *
+ * @property string firstname
+ * @property string lastname
+ * @property string birthdate
+ * @property string address
+ * @property string zip
+ * @property string city
+ * @property string tel
+ * @property string gsm
+ * @property string email
+ * @property int tak_id
+ * @property boolean paid
+ * @property int year
+ *
+ * @property Contact[] contacts
+ * @property Tak tak
+ */
+
 class Member extends Model
 {
 	protected $fillable = ['firstname', 'name', 'birthdate', 'address', 'zip', 'city', 'tel', 'gsm', 'email', 'tak_id', 'paid', 'year'];

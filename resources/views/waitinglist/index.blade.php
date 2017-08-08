@@ -108,7 +108,7 @@
                                             </td>
                                             <td class="text-center">{{ $kid->year }}</td>
                                             <td><a href="leiding/wachtlijst/details/<?= $kid->id ?>"><i class="fa fa-eye"></i></a></td>
-                                            @if ($this->session->userdata('type') == 'admin' || $this->session->userdata('type') == 'webmaster'): ?>
+                                            @if (Auth::user()->hasPermission('administratie')): ?>
                                                 <td><a href="{{ route('wachtlijst.edit', ['waitinglist' => $kid]) }}"><i class="fa fa-pencil"></i></a></td>
                                                 <td><a href="{{ route('wachtlijst.destroy', ['waitinglist' => $kid]) }}"><i class="fa fa-trash"></i></a></td>
                                             @endif

@@ -130,7 +130,7 @@
 							@if (!$leader->grl() && $leader->active)
 								<div class="one-half leider">
 									<p class="pull-left">
-										{{ $leader->member->firstname }} {{ $leader->member>name }}
+										{{ $leader->member->firstname }} {{ $leader->member->name }}
 										@if ($leader->show_nick)
 											<br>
 											{{ '(' . $leader->nickname . ')' }}

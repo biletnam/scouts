@@ -75,6 +75,7 @@
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-12">
+						<h5>Tak</h5>
 						<select id="tak_id" name="tak_id">
 							@foreach ($takken as $tak)
 								<option value="{{ $tak->id }}" {{ ($member->tak_id == $tak->id) ? 'selected' : '' }}>{{ $tak->name }}</option>
@@ -88,9 +89,11 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-input">
-								@if ($member->tak->name == '' || $member->tak->name == 'Leiding'))
+								@if ($member->tak->name == '' || $member->tak->name == 'Leiding')
+									<h5>Jaar</h5>
 									<input id="year" type="number" name="year" value="{{ $member->year or 1 }}">
 								@else
+									<h5>Jaar</h5>
 									<select id="year" name="year">
 										<option value="1" {{ ($member->year == 1) ? 'selected' : '' }}>1ejaars</option>
 										<option value="2" {{ ($member->year == 2) ? 'selected' : '' }}>2ejaars</option>

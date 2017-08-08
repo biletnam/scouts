@@ -15,7 +15,7 @@ class ContactController extends Controller
 	 * Show the form for creating a new resource.
 	 *
 	 * @param  Member  $member
-	 * @return \Illuminate\Http\View
+	 * @return \Illuminate\View\View
 	 */
 	public function create(Member $member)
 	{
@@ -31,19 +31,29 @@ class ContactController extends Controller
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-			'name'	=> 'required|max:255',
-			'email'	=> 'email'
+			'name'	=> 'required_if:existing,0|max:255'
 		]);
 
 		$input = $request->all();
-		$contact = new Contact($input);
-		$contact->save();
-
 		$member = Member::find($input['member_id']);
-		$member->contacts()->attach($contact->id);
-
 		$mailchimpService = new MailchimpService();
-		$mailchimpService->addContact($contact->email, $member->tak);
+
+		if ($input['existing']) {
+			if (!is_array($input['contacts'])) {
+				$input['contacts'] = [$input['contacts']];
+			}
+			foreach ($input['contacts'] as $contactId) {
+				$contact = Contact::find($contactId);
+				$member->contacts()->attach($contact->id);
+				$mailchimpService->addContact($contact->email, $member->tak);
+			}
+		} else {
+			$contact = new Contact($input);
+			$contact->save();
+
+			$member->contacts()->attach($contact->id);
+			$mailchimpService->addContact($contact->email, $member->tak);
+		}
 
 		return redirect()->route('ledenlijst.edit', [$member->id]);
 	}
@@ -97,5 +107,12 @@ class ContactController extends Controller
 
 		$contact->delete();
 		return redirect()->back();
+	}
+
+	public function getContactsByMemberId($memberId)
+	{
+		/** @var Member $member */
+		$member = Member::find($memberId);
+		return json_encode($member->contacts);
 	}
 }

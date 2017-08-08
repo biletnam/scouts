@@ -18,6 +18,9 @@
 			</div>
 			<div class="form-group existing">
 				<select name="member" id="member"></select>
+				<div class="contacts">
+
+				</div>
 			</div>
 			<div class="form-group contact-form">
 				<div class="row">

@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	// Member contacts
 	Route::resource('contact', 'ContactController', ['except' => ['index', 'show', 'create']]);
 	Route::get('/contact/{member}/create', 'ContactController@create')->name('contact.create');
+	Route::get('/contacts/get-for-member-ajax/{member_id}', 'ContactController@getContactsByMemberId');
 
 	// Members
 	Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');

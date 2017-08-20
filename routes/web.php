@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::get('/wachtlijst/overgang', 'WaitinglistController@doOvergang')->name('wachtlijst.overgang');
 	Route::get('/wachtlijst/undo-overgang', 'WaitinglistController@undoOvergang')->name('wachtlijst.undo-overgang');
 	Route::get('/wachtlijst/excelify', 'WaitinglistController@excelify')->name('wachtlijst.excelify');
-	Route::resource('wachtlijst', 'WaitinglistController');
+	Route::resource('wachtlijst', 'WaitinglistController', ['except' => ['create'], 'parameters' => ['wachtlijst' => 'waitinglist']]);
 	Route::get('/wachtlijst/{tak?}/create', 'WaitinglistController@create')->name('wachtlijst.create');
 	Route::post('/wachtlijst/register', 'WaitinglistController@register')->name('wachtlijst.register');
 

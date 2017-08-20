@@ -26,9 +26,11 @@ class WaitinglistController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request, string $tak)
     {
-        return view('waitinglist.create');
+    	$priority = $request->get('p');
+    	$tak = ($tak === 'jojos') ? 'Jojo\'s' : ucfirst($tak);
+        return view('waitinglist.create')->with(['tak' => $tak, 'priority' => $priority]);
     }
 
     /**
@@ -124,7 +126,7 @@ class WaitinglistController extends Controller
         $waitinglist->save();
 
         Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' gewijzigd');
-        return redirect()->route('waitinglist.index');
+        return redirect()->route('wachtlijst.index');
     }
 
     /**
@@ -137,7 +139,7 @@ class WaitinglistController extends Controller
     {
         $waitinglist->delete();
         Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' verwijderd');
-        return redirect()->route('waitinglist.index');
+        return redirect()->route('wachtlijst.index');
     }
 
     public function excelify() {
@@ -181,7 +183,7 @@ class WaitinglistController extends Controller
 						break;
 				}
 			}
-			return redirect()->route('ledenlijst.index');
+			return redirect()->route('wachtlijst.index');
 		} else {
 			abort(404);
 		}
@@ -199,7 +201,7 @@ class WaitinglistController extends Controller
 					$waitinglist->save();
 				}
 			}
-			return redirect()->route('ledenlijst.index');
+			return redirect()->route('wachtlijst.index');
 		} else {
 			abort(404);
 		}

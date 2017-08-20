@@ -16,20 +16,20 @@ class Waitinglist extends Model
     protected function byTak() {
         return [
                 'kapoenen' => [
-                    'priority'  => self::where(['tak' => 'Kapoenen', 'priority' => 1])->get(),
-                    'regular'   => self::where(['tak' => 'Kapoenen', 'priority' => 0])->get()
+                    'priority'  => self::where(['tak' => 'Kapoenen', 'priority' => 1])->orderBy('year')->orderBy('firstname')->get(),
+                    'regular'   => self::where(['tak' => 'Kapoenen', 'priority' => 0])->orderBy('year')->orderBy('firstname')->get()
                 ],
                 'welpen' => [
-                    'priority'  => self::where(['tak' => 'Welpen', 'priority' => 1])->get(),
-                    'regular'   => self::where(['tak' => 'Welpen', 'priority' => 0])->get()
+                    'priority'  => self::where(['tak' => 'Welpen', 'priority' => 1])->orderBy('year')->orderBy('firstname')->get(),
+                    'regular'   => self::where(['tak' => 'Welpen', 'priority' => 0])->orderBy('year')->orderBy('firstname')->get()
                 ],
                 'jojos' => [
-                    'priority'  => self::where(['tak' => 'Jojo\'s', 'priority' => 1])->get(),
-                    'regular'   => self::where(['tak' => 'Jojo\'s', 'priority' => 0])->get()
+                    'priority'  => self::where(['tak' => 'Jojo\'s', 'priority' => 1])->orderBy('year')->orderBy('firstname')->get(),
+                    'regular'   => self::where(['tak' => 'Jojo\'s', 'priority' => 0])->orderBy('year')->orderBy('firstname')->get()
                 ],
                 'givers' => [
-                    'priority'  => self::where(['tak' => 'Givers', 'priority' => 1])->get(),
-                    'regular'   => self::where(['tak' => 'Givers', 'priority' => 0])->get()
+                    'priority'  => self::where(['tak' => 'Givers', 'priority' => 1])->orderBy('year')->orderBy('firstname')->get(),
+                    'regular'   => self::where(['tak' => 'Givers', 'priority' => 0])->orderBy('year')->orderBy('firstname')->get()
                 ]
         ];
     }

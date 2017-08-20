@@ -79,7 +79,7 @@
 							<div class="form-input">
 								<div class="row">
 									<div class="col-sm-6">
-										<label class="checkbox-label"><input type="checkbox" name="paid" value="1"> Betaald</label>
+										<label class="checkbox-label"><input type="checkbox" name="paid" value="1" {{ (old('paid'))? 'checked' : '' }}> Betaald</label>
 									</div>
 								</div>
 							</div>

@@ -1,4 +1,4 @@
-@extends('layouts.leiding')
+@extends('layout.leiding')
 @section('title', 'Toevoegen aan wachtlijst')
 @section('content')
 

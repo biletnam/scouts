@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use Excel;
 use Session;
 
@@ -156,4 +157,51 @@ class WaitinglistController extends Controller
 		    });
 	    })->export('xls');
     }
+
+	public function doOvergang() {
+		if (Auth::user()->hasPermission('administratie')) {
+			$waitinglists = Waitinglist::get();
+			foreach ($waitinglists as $waitinglist) {
+				/** @var Member $member */
+				switch ($waitinglist->year) {
+					case 2:
+						if ($waitinglist->tak === 'Kapoenen') {
+							$waitinglist->toNextTak();
+						} else {
+							$waitinglist->year++;
+							$waitinglist->save();
+						}
+						break;
+					case 3:
+						$waitinglist->toNextTak();
+						break;
+					default:
+						$waitinglist->year++;
+						$waitinglist->save();
+						break;
+				}
+			}
+			return redirect()->route('ledenlijst.index');
+		} else {
+			abort(404);
+		}
+	}
+
+	public function undoOvergang() {
+		if (Auth::user()->hasPermission('administratie')) {
+			$waitinglists = Waitinglist::get();
+			foreach ($waitinglists as $waitinglist) {
+				/** @var Member $member */
+				if ($waitinglist->year === 1) {
+					$waitinglist->toPreviousTak();
+				} else {
+					$waitinglist->year--;
+					$waitinglist->save();
+				}
+			}
+			return redirect()->route('ledenlijst.index');
+		} else {
+			abort(404);
+		}
+	}
 }

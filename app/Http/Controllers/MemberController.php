@@ -218,4 +218,66 @@ class MemberController extends Controller
 		$tak = Tak::where('name', $tak)->first();
 		return view('members.print')->with(['tak' => $tak, 'args' => $args]);
 	}
+
+	public function doOvergang() {
+		if (Auth::user()->hasPermission('administratie')) {
+			$members = Member::get();
+			foreach ($members as $member) {
+				/** @var Member $member */
+				switch ($member->year) {
+					case 1:
+						if ($member->tak->name === 'Jins') {
+							$member->toNextTak();
+						} else {
+							$member->year++;
+							$member->save();
+						}
+						break;
+					case 2:
+						if ($member->tak->name === 'Kapoenen') {
+							$member->toNextTak();
+						} else {
+							$member->year++;
+							$member->save();
+						}
+						break;
+					case 3:
+						if ($member->tak->name != 'Leiding') {
+							$member->toNextTak();
+						} else {
+							$member->year++;
+							$member->save();
+						}
+						break;
+					default:
+						if ($member->tak->name === 'Leiding') {
+							$member->year++;
+							$member->save();
+						}
+						break;
+				}
+			}
+			return redirect()->route('ledenlijst.index');
+		} else {
+			abort(404);
+		}
+	}
+
+	public function undoOvergang() {
+		if (Auth::user()->hasPermission('administratie')) {
+			$members = Member::get();
+			foreach ($members as $member) {
+				/** @var Member $member */
+				if ($member->year === 1) {
+					$member->toPreviousTak();
+				} else {
+					$member->year--;
+					$member->save();
+				}
+			}
+			return redirect()->route('ledenlijst.index');
+		} else {
+			abort(404);
+		}
+	}
 }

@@ -495,6 +495,11 @@ button.givers, button.jins { margin-left: 30px;}
 .cancel { margin-left: 20px;}
 .fa-phone, .fa-mobile, .fa-envelope-o {width: 1.5em;}
 
+.btn-primary {
+	border-radius: 0;
+	.fa-phone { width: 1em; }
+}
+
 // END ADMIN //
 
 //-- CK EDITOR --//

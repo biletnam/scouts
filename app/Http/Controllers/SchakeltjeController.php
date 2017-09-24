@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Schakeltje;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class SchakeltjeController extends Controller
 {
@@ -62,19 +64,24 @@ class SchakeltjeController extends Controller
      */
     public function destroy(Schakeltje $schakeltje)
     {
+	    $year = $schakeltje->getStartingYear();
 
-	    $schakeltje = Schakeltje::find($schakeltje);
-
-	    $file = new File(asset($schakeltje->url));
-	    $file->move(asset('schakeltjes/archive'));
+	    $file = new File(public_path($schakeltje->url));
+	    Storage::makeDirectory(public_path('schakeltjes/' . $year . '-' . ($year+1)));
+	    $file->move(public_path('schakeltjes/' . $year . '-' . ($year+1)));
 
 	    $schakeltje->archived = 1;
-	    $schakeltje->url = str_replace('schakeltjes', 'schakeltjes/archive', $schakeltje->url);
+	    $schakeltje->url = str_replace('schakeltjes', 'schakeltjes/' . $year . '-' . ($year+1), $schakeltje->url);
 	    $schakeltje->save();
-
-	    Schakeltje::destroy($schakeltje->id);
 
 	    Session::flash('success', 'Schakeltje gearchiveerd');
 	    return redirect()->back();
+    }
+
+    public function archive(string $folder = '')
+    {
+    	dd(Storage::directories(public_path('schakeltje/')));
+    	$schakeltjes = Schakeltje::where('archived', 1)->orderBy('created_at', 'desc')->get();
+    	return view('schakeltjes.archive')->with(['schakeltjes' => $schakeltjes]);
     }
 }

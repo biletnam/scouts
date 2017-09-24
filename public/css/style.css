@@ -803,6 +803,11 @@ button.givers, button.jins {
 .fa-phone, .fa-mobile, .fa-envelope-o {
   width: 1.5em; }
 
+.btn-primary {
+  border-radius: 0; }
+  .btn-primary .fa-phone {
+    width: 1em; }
+
 .cke_top, .cke_bottom {
   background: #ECECEC !important; }
 

@@ -42,7 +42,6 @@
 					<tr>
 						<th>Voornaam</th>
 						<th>Achternaam</th>
-						<th>Geboortedatum</th>
 						<th>GSM</th>
 						<th>Jaar</th>
 						<th>E-mailadres</th>
@@ -57,8 +56,7 @@
 							<tr>
 								<td>{{ $member->firstname }}</td>
 								<td>{{ $member->name }}</td>
-								<td>{{ $member->birthdate }}</td>
-								<td>{{ $member->gsm }}</td>
+								<td><a href="tel:{{ $member->gsm }}" class="btn btn-primary"><i class="fa fa-phone"></i> Bellen</a></td>
 								<td class="text-center">{{ $member->year }}</td>
 								<td>
 									@if (isset($member->email))

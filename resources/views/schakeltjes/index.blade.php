@@ -18,6 +18,11 @@
             <ul id="schakel">
                 @foreach ($schakeltjes as $schakeltje)
                     <li class="schakeltje">
+                        <form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right">
+                            {{ csrf_field() }}
+                            {{ method_field('delete') }}
+                            <button type="submit"><i class="fa fa-trash"></i></button>
+                        </form>
                         <a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
                     </li>
                 @endforeach
@@ -40,7 +45,7 @@
                     <li><button type="submit">Uploaden</button></li>
                 </ul>
             </form>
-            <a href="schakeltje/archief">Ga naar het archief ></a>
+            <a href="{{ route('schakeltje.archive') }}">Ga naar het archief ></a>
             @endif
         </main>
     </div>

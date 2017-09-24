@@ -15,7 +15,7 @@
                             <i class="fa fa-plus"></i> Nieuw broertje/zusje
                         </a>
 
-                        <button class="{{ $index }}">E-mailadressen kopiëren</button>
+                        <button class="copy {{ $index }}">E-mailadressen kopiëren</button>
                         <div class="email-list" id="{{ $index }}>">
                             <b>Kopieer deze e-mailadressen naar het CC vak van je mail: </b><br>
                             @php
@@ -24,6 +24,7 @@
                                     if (strpos($email, $kid->email) === FALSE) { $email.=$kid->email; }
                                 }
                             @endphp
+                            {{ $email }}
                             <input type="hidden" value="{{ $email }}" class="emails">
                         </div>
 
@@ -55,7 +56,15 @@
                                             <td><a href="{{ route('wachtlijst.show', ['waitinglist' => $kid]) }}"><i class="fa fa-eye"></i></a></td>
                                             @if (Auth::user()->hasPermission('administratie'))
                                                 <td><a href="{{ route('wachtlijst.edit', ['waitinglist' => $kid]) }}"><i class="fa fa-pencil"></i></a></td>
-                                                <td><a href="{{ route('wachtlijst.destroy', ['waitinglist' => $kid]) }}"><i class="fa fa-trash"></i></a></td>
+		                                        <td>
+			                                        <form id="delete-{{ $kid->id }}" action="{{ route('wachtlijst.destroy', ['waitinglist' => $kid]) }}" class="delete" method="POST">
+				                                        {{ csrf_field() }}
+				                                        {{ method_field('DELETE') }}
+				                                        <button type="submit" form="delete-{{ $kid->id }}">
+					                                        <i class="fa fa-trash"></i>
+				                                        </button>
+			                                        </form>
+		                                        </td>
                                             @endif
                                         </tr>
                                     @endforeach
@@ -70,7 +79,7 @@
                         <h4>Nieuwe kinderen: {{ count($tak['regular']) }}</h4>
                         <a href="{{ route('wachtlijst.create', ['tak' => $index]) }}" class="add"><i class="fa fa-plus"></i> Nieuw kind</a>
 
-                        <button class="{{ $index }}">E-mailadressen kopiëren</button>
+                        <button class="copy {{ $index }}">E-mailadressen kopiëren</button>
                         <div class="email-list" id="{{ $index }}">
                             <b>Kopieer deze e-mailadressen naar het CC vak van je mail: </b><br>
                             @php
@@ -79,6 +88,7 @@
                                     if (strpos($email, $kid->email) === FALSE) { $email.=$kid->email; }
                                 }
                             @endphp
+                            {{ $email }}
                             <input type="hidden" value="{{ $email }}" class="emails">
                         </div>
 
@@ -107,10 +117,18 @@
                                                 {{ str_replace(';', '<br>', $kid->email) }}
                                             </td>
                                             <td class="text-center">{{ $kid->year }}</td>
-                                            <td><a href="leiding/wachtlijst/details/<?= $kid->id ?>"><i class="fa fa-eye"></i></a></td>
-                                            @if (Auth::user()->hasPermission('administratie')): ?>
+                                            <td><a href="{{ route('wachtlijst.show', ['waitinglist' => $kid]) }}"><i class="fa fa-eye"></i></a></td>
+                                            @if (Auth::user()->hasPermission('administratie'))
                                                 <td><a href="{{ route('wachtlijst.edit', ['waitinglist' => $kid]) }}"><i class="fa fa-pencil"></i></a></td>
-                                                <td><a href="{{ route('wachtlijst.destroy', ['waitinglist' => $kid]) }}"><i class="fa fa-trash"></i></a></td>
+		                                        <td>
+			                                        <form id="delete-{{ $kid->id }}" action="{{ route('wachtlijst.destroy', ['waitinglist' => $kid]) }}" class="delete" method="POST">
+				                                        {{ csrf_field() }}
+				                                        {{ method_field('DELETE') }}
+				                                        <button type="submit" form="delete-{{ $kid->id }}">
+					                                        <i class="fa fa-trash"></i>
+				                                        </button>
+			                                        </form>
+		                                        </td>
                                             @endif
                                         </tr>
                                     @endforeach

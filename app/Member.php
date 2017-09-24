@@ -68,4 +68,52 @@ class Member extends Model
 						->get();
 		return json_encode($members);
 	}
+
+	public function toNextTak() {
+		switch ($this->tak->name) {
+			case 'Kapoenen':
+				$this->tak_id = Tak::where('name', 'Welpen')->first()->id;
+				break;;
+			case 'Welpen':
+				$this->tak_id = Tak::where('name', 'Jojo\'s')->first()->id;
+				break;
+			case 'Jojo\'s':
+				$this->tak_id = Tak::where('name', 'Givers')->first()->id;
+				break;
+			case 'Givers':
+				$this->tak_id = Tak::where('name', 'Jins')->first()->id;
+				break;
+			case 'Jins':
+				$this->tak_id = Tak::where('name', 'Leiding')->first()->id;
+				break;
+		}
+		$this->year = 1;
+		$this->save();
+	}
+
+	public function toPreviousTak() {
+		switch ($this->tak->name) {
+			case 'Welpen':
+				$this->tak_id = Tak::where('name', 'Kapoenen')->first()->id;
+				$this->year = 2;
+				break;
+			case 'Jojo\'s':
+				$this->tak_id = Tak::where('name', 'Welpen')->first()->id;
+				$this->year = 3;
+				break;
+			case 'Givers':
+				$this->tak_id = Tak::where('name', 'Jojo\'s')->first()->id;
+				$this->year = 3;
+				break;
+			case 'Jins':
+				$this->tak_id = Tak::where('name', 'Givers')->first()->id;
+				$this->year = 3;
+				break;
+			case 'Leiding':
+				$this->tak_id = Tak::where('name', 'Jins')->first()->id;
+				$this->year = 1;
+				break;
+		}
+		$this->save();
+	}
 }

@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::get('/contacts/get-for-member-ajax/{member_id}', 'ContactController@getContactsByMemberId');
 
 	// Members
+	Route::get('/ledenlijst/overgang', 'MemberController@doOvergang')->name('ledenlijst.overgang');
+	Route::get('/ledenlijst/undo-overgang', 'MemberController@undoOvergang')->name('ledenlijst.undo-overgang');
 	Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');
 	Route::get('/ledenlijst/get-ajax', 'MemberController@getAjax');
 	Route::resource('ledenlijst', 'MemberController', ['except' => 'create', 'parameters' => ['ledenlijst' => 'member']]);
@@ -49,8 +51,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::post('/ledenlijst/toggle-paid/{id}', 'MemberController@togglePaid');
 
 	// Waitinglist
+	Route::get('/wachtlijst/overgang', 'WaitinglistController@doOvergang')->name('wachtlijst.overgang');
+	Route::get('/wachtlijst/undo-overgang', 'WaitinglistController@undoOvergang')->name('wachtlijst.undo-overgang');
 	Route::get('/wachtlijst/excelify', 'WaitinglistController@excelify')->name('wachtlijst.excelify');
-	Route::resource('wachtlijst', 'WaitinglistController');
+	Route::resource('wachtlijst', 'WaitinglistController', ['except' => ['create'], 'parameters' => ['wachtlijst' => 'waitinglist']]);
 	Route::get('/wachtlijst/{tak?}/create', 'WaitinglistController@create')->name('wachtlijst.create');
 	Route::post('/wachtlijst/register', 'WaitinglistController@register')->name('wachtlijst.register');
 

@@ -139,7 +139,7 @@ main {
 		float: right; padding-left: 2.127%; padding-right: 2.127%;
 		margin: 0; list-style: none; border: none; box-shadow: none; bottom: 0;
 		@media #{$mobile} {
-			clear: both; width: 100%; background-color: $theme; margin-top: 0; padding: 3em 1em 2em; padding-top: 20px;
+			clear: both; width: 100%; background-color: $theme; margin-top: 0; padding: 3em 1em 2em;
 			.nav {width: 100%;}
 		}
 		.active {
@@ -447,6 +447,7 @@ footer {
 #welkom { float: right; }
 #leiding {
 	position: relative;
+	@media #{$mobile} { padding: 0 2em }
 	#background-img { position: fixed; top: 0; right: 0; height: 100vh; width: auto; opacity: .4; z-index: -1; }
 	>.row>.one-fifth { margin-top: 3em;}
 	main {
@@ -460,6 +461,9 @@ footer {
 		.select2 {
 			float: right;
 			.select2-selection { border-radius: 0; }
+		}
+		.table-leden, .table-users {
+			overflow-x: scroll;
 		}
 	}
 	#leiding table:not(:first-of-type) { width: 290px;}
@@ -506,6 +510,10 @@ button.givers, button.jins { margin-left: 30px;}
 .cke_top, .cke_bottom { background: #ECECEC !important; }
 .cke_toolgroup, .cke_combo_button { background: #F8F8F8 !important; border-radius: 0 !important; }
 // END CKEDITOR //
+
+.mobile-only {
+	@media #{$tablet} { display: none !important; }
+}
 
 @media print {
 	#background-img, #leiding .one-fifth, #checks { display: none; }

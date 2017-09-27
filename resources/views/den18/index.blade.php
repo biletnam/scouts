@@ -66,10 +66,12 @@
 						<h3>Leiding</h3>
 						<table>
 							<thead>
-								<th>Naam</th>
-								<th>Adres</th>
-								<th>E-mail</th>
-								<th>GSM</th>
+								<tr>
+									<th>Naam</th>
+									<th>Adres</th>
+									<th>E-mail</th>
+									<th>GSM</th>
+								</tr>
 							</thead>
 							<tbody>
 								<tr>

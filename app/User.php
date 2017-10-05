@@ -55,6 +55,8 @@ class User extends Authenticatable
 
     public function member() { return $this->belongsTo('App\Member'); }
 
+	public function tak() { return $this->belongsTo('App\Tak'); }
+
     public function roles() { return $this->belongsToMany('App\Role', 'user_roles'); }
 
     /**

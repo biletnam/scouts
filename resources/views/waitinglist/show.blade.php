@@ -1,4 +1,4 @@
-@extends('layouts.leiding')
+@extends('layout.leiding')
 @section('title', $kid->firstname.' '.$kid->name)
 @section('content')
     <main>

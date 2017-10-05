@@ -1,8 +1,8 @@
 @extends('layout.leiding')
-@section('title', Auth::user()->member->tak->name.': Ledenlijst')
+@section('title', Auth::user()->tak->name.': Ledenlijst')
 @section('content')
 	@php
-		$tak = (Auth::user()->member->tak->name === 'Jojo\'s') ? 'jojos' : strtolower(Auth::user()->member->tak->name);
+		$tak = (Auth::user()->tak->name === 'Jojo\'s') ? 'jojos' : strtolower(Auth::user()->tak->name);
 	@endphp
 	<main class="leden">
 		<?php  
@@ -10,7 +10,7 @@
 		?>
 		<h2>Ledenoverzicht</h2>
 		<div>
-			<h3>{{ Auth::user()->member->tak->name }}: {{ count($members) }}</h3>
+			<h3>{{ Auth::user()->tak->name }}: {{ count($members) }}</h3>
 			<a class="pull-right print" href="{{ route('ledenlijst.print', [$tak]) }}">Print ledenlijst</a>
 
 			<button class="copy {{ $tak }}">E-mailadressen kopiëren</button>

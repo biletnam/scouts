@@ -41,6 +41,7 @@
                             <li><a href="den18">Groep</a></li>
                             <li><a href="den18/geschiedenis">Geschiedenis</a></li>
                             <li><a href="den18/uniform">Uniform</a></li>
+                            <li><a href="den18/drank-en-drugs">Drank en drugs</a></li>
                         </ul>
                     </li>
                     <li {{ (Request::is('schakeltje.index')) ? 'class="active"' : '' }}><a href="schakeltje">Schakeltje</a></li>

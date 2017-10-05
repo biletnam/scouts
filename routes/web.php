@@ -22,6 +22,7 @@ Route::group(['prefix' => 'den18'], function() {
 	Route::get('/', 'PageController@den18')->name('den18.index');
 	Route::get('geschiedenis', 'PageController@geschiedenis')->name('den18.geschiedenis');
 	Route::get('uniform', 'PageController@uniform')->name('den18.uniform');
+	Route::get('drank-en-drugs', 'PageController@drankdrugs')->name('den18.drankendrugs');
 });
 
 Route::get('schakeltje', 'SchakeltjeController@index')->name('schakeltje.index');

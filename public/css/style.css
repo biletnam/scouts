@@ -238,8 +238,7 @@ main {
         width: 100%;
         background-color: #4e7a05;
         margin-top: 0;
-        padding: 3em 1em 2em;
-        padding-top: 20px; }
+        padding: 3em 1em 2em; }
         .navbar #nav .nav {
           width: 100%; } }
     @media (min-width: 767px) {
@@ -722,6 +721,9 @@ footer {
 
 #leiding {
   position: relative; }
+  @media (max-width: 767px) {
+    #leiding {
+      padding: 0 2em; } }
   #leiding #background-img {
     position: fixed;
     top: 0;
@@ -756,6 +758,8 @@ footer {
       float: right; }
       #leiding main .select2 .select2-selection {
         border-radius: 0; }
+    #leiding main .table-leden, #leiding main .table-users {
+      overflow-x: scroll; }
   #leiding #leiding table:not(:first-of-type) {
     width: 290px; }
 
@@ -814,6 +818,10 @@ button.givers, button.jins {
 .cke_toolgroup, .cke_combo_button {
   background: #F8F8F8 !important;
   border-radius: 0 !important; }
+
+@media (min-width: 767px) {
+  .mobile-only {
+    display: none !important; } }
 
 @media print {
   #background-img, #leiding .one-fifth, #checks {

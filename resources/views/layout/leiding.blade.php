@@ -58,13 +58,17 @@
 			<li {{ (Request::is('leiding/mailinglijst')) ? 'class="active"' : '' }}>
 				<a href="{{ route('mailinglijst.index') }}">Mailinglijst</a>
 			</li>
+
+			{{--Mobile hidden--}}
+			<li class="mobile-only"><a href="{{ url('/') }}"><i class="fa fa-globe"></i> Naar de website</a></li>
+			<li class="mobile-only"><a href="leiding/instellingen"><i class="fa fa-lock"></i> Wachtwoord wijzigen</a></li>
+			<li class="mobile-only"><a href="logout"><i class="fa fa-sign-out"></i> Afmelden</a></li>
 		</ul>
 	</div>
 </nav>
 @include('partial.success')
 @include('partial.errors')
 <div class="container" id="leiding">
-	<img id="background-img" src="img/leidingkenteken.jpg" alt="leidingkenteken">
 	@if (strpos(Request::url(), 'edit') === false && strpos(Request::url(), 'create') === false)
 		<div class="row">
 			<div class="four-fifth">

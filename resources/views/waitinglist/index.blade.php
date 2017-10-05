@@ -79,7 +79,7 @@
                         <h4>Nieuwe kinderen: {{ count($tak['regular']) }}</h4>
                         <a href="{{ route('wachtlijst.create', ['tak' => $index]) }}" class="add"><i class="fa fa-plus"></i> Nieuw kind</a>
 
-                        <button class="copy {{ $index }}">E-mailadressen kopiëren</button>
+                        <button class="btn-gray copy {{ $index }}">E-mailadressen kopiëren</button>
                         <div class="email-list" id="{{ $index }}">
                             <b>Kopieer deze e-mailadressen naar het CC vak van je mail: </b><br>
                             @php

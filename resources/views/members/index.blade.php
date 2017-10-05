@@ -8,13 +8,13 @@
 		@foreach ($members as $index => $tak)
 			<div>
 				<h3>{{ ($index !== 'jojos') ? ucfirst($index) : 'Jojo\'s' }}: {{ count($tak) }}</h3>
-				<a class="pull-right print" href="{{ route('ledenlijst.print', [$index]) }}">Print ledenlijst</a>
+				<a class="pull-right print" href="{{ route('ledenlijst.print', [$index]) }}"><i class="fa fa-print"></i>Print ledenlijst</a>
 
 				@if (Auth::user()->hasPermission('account-management'))
 					<a href="{{ route('ledenlijst.create', [$index]) }}" class="add"><i class="fa fa-plus"></i> Nieuw lid</a>
 				@endif
 
-				<button class="copy {{ $index }}">E-mailadressen kopiëren</button>
+				<button class="btn-gray copy {{ $index }}">E-mailadressen kopiëren</button>
 				<div class="email-list" id="{{ $index }}">
 					<b>Kopieer deze e-mailadressen naar het CC vak van je mail: </b><br>
 					@php
@@ -57,7 +57,7 @@
 								<tr>
 									<td>{{ $member->firstname }}</td>
 									<td>{{ $member->name }}</td>
-									<td><a href="tel:{{ $member->gsm }}" class="btn btn-primary"><i class="fa fa-phone"></i> Bellen</a></td>
+									<td><a href="tel:{{ preg_replace('/[^0-9.]+/', '', $member->gsm) }}" class="btn btn-primary"><i class="fa fa-phone"></i> Bellen</a></td>
 									<td class="text-center">{{ $member->year }}</td>
 									<td>
 										@if (isset($member->email))

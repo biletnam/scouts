@@ -101,8 +101,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <file leaf-file-name="style.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/style.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="22" column="56" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
@@ -168,7 +168,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
         <option value="$PROJECT_DIR$/resources/views/articles/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/articles/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/members/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/excel/waitinglist.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/excel/members.blade.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -179,7 +178,6 @@
         <option value="$PROJECT_DIR$/resources/views/mailchimp/general.html" />
         <option value="$PROJECT_DIR$/resources/views/articles/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layout/leiding.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/mailinglists/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mailinglists/campaign-create.blade.php" />
         <option value="$PROJECT_DIR$/app/Services/MailchimpService.php" />
         <option value="$PROJECT_DIR$/resources/views/partial/errors.blade.php" />
@@ -196,7 +194,6 @@
         <option value="$PROJECT_DIR$/resources/views/waitinglist/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/members/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/waitinglist/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/waitinglist/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/WaitinglistController.php" />
         <option value="$PROJECT_DIR$/app/Contact.php" />
         <option value="&lt;3a0974a2-668f-42b1-9aa4-db0caca36e0b&gt;/app/Contact.php" />
@@ -288,39 +285,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scouts" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="framework" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scouts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scouts" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -342,7 +311,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="waitinglist" />
+              <option name="myItemId" value="mailinglists" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -359,10 +328,6 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -374,7 +339,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -396,11 +361,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -478,6 +443,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
@@ -489,7 +455,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../crm" />
-    <property name="SearchEverywhereHistoryKey" value="create.bl&#9;FILE&#9;file://C:/Users/Tim/Documents/GitHub/scouts/resources/views/waitinglist/create.blade.php&#10;Newsletter&#9;FILE&#9;file://C:/Users/Tim/Documents/GitHub/scouts/config/laravel-newsletter.php&#10;NewsletterList&#9;null&#9;null&#10;contact/create.&#9;FILE&#9;file://C:/Users/Tim/Documents/GitHub/scouts/resources/views/contacts/create.blade.php" />
+    <property name="SearchEverywhereHistoryKey" value="sty&#9;FILE&#9;file://D:/Documents/GitHub/scouts/public/css/style.scss&#10;layout/l&#9;FILE&#9;file://D:/Documents/GitHub/scouts/resources/views/layout/leiding.blade.php&#10;create.bl&#9;FILE&#9;file://C:/Users/Tim/Documents/GitHub/scouts/resources/views/waitinglist/create.blade.php&#10;Newsletter&#9;FILE&#9;file://C:/Users/Tim/Documents/GitHub/scouts/config/laravel-newsletter.php&#10;NewsletterList&#9;null&#9;null&#10;contact/create.&#9;FILE&#9;file://C:/Users/Tim/Documents/GitHub/scouts/resources/views/contacts/create.blade.php" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -516,17 +482,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
-      <PhpTestRunnerSettings />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
       <node-interpreter value="project" />
@@ -667,9 +622,11 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,10 +910,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/waitinglist/edit.blade.php">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="61" lean-forward="false" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+        <state relative-caret-position="147">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -983,23 +939,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/waitinglist/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="106" column="35" lean-forward="true" selection-start-line="106" selection-start-column="35" selection-end-line="106" selection-end-column="35" />
+          <folding>
+            <marker date="1506789265772" expanded="true" signature="1416:1553" ph="..." />
+            <marker date="1506789265772" expanded="true" signature="5450:5587" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WaitinglistController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="838">
           <caret line="141" column="44" lean-forward="false" selection-start-line="141" selection-start-column="44" selection-end-line="141" selection-end-column="44" />
           <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-            <element signature="e#179#276#0#PHP" expanded="false" />
-            <element signature="e#411#516#0#PHP" expanded="false" />
-            <element signature="e#780#939#0#PHP" expanded="false" />
-            <element signature="e#1790#1930#0#PHP" expanded="false" />
-            <element signature="e#1935#2065#0#PHP" expanded="false" />
-            <element signature="e#2071#2229#0#PHP" expanded="false" />
-            <element signature="e#2370#2574#0#PHP" expanded="false" />
-            <element signature="e#3975#4131#0#PHP" expanded="false" />
-            <element signature="e#4386#4929#0#PHP" expanded="false" />
-            <element signature="e#4932#5587#0#PHP" expanded="false" />
-            <element signature="e#5590#6023#0#PHP" expanded="false" />
+            <marker date="1506790868936" expanded="true" signature="982:1347" ph="..." />
+            <marker date="1506790868936" expanded="true" signature="1042:1154" ph="..." />
+            <marker date="1506790868936" expanded="true" signature="1098:1145" ph="..." />
+            <marker date="1506790868936" expanded="true" signature="1162:1339" ph="..." />
+            <marker date="1506790868936" expanded="true" signature="1212:1330" ph="..." />
+            <marker date="1506790868936" expanded="true" signature="1270:1320" ph="..." />
           </folding>
         </state>
       </provider>

@@ -253,10 +253,6 @@ form {
 	}
 	input[type="text"], input[type="password"], input[type="email"] {padding-left: .5em;}
 	button:focus { outline: none; }
-	.btn-submit {
-		background-color: $accent; border: none; color: white; padding: .6em;
-		&:active { background-color: $theme; box-shadow: 2px 2px 2px 2px $accent inset;}
-	}
 	label.checkbox-label, label.radio-label { font-weight: normal; }
 	.contact-form { display: none; }
 	.select2-container {
@@ -449,13 +445,16 @@ footer {
 	position: relative;
 	@media #{$mobile} { padding: 0 2em }
 	#background-img { position: fixed; top: 0; right: 0; height: 100vh; width: auto; opacity: .4; z-index: -1; }
-	>.row>.one-fifth { margin-top: 3em;}
+	>.row>.one-fifth {
+		margin-top: 3em;
+		@media #{$mobile} { display: none; }
+	}
 	main {
 		padding: 2em 5em; margin-top: 50px;
 		@media #{$mobile} { padding: 2em 0; }
 		&.leden {
 			width: 85%;
-			@media #{$mobile} { width: 100%; }
+			@media #{$mobile} { width: 100%; margin: 0; }
 		}
 		p.success { text-align: center; background-color: #d2fbc8; color: green; position: absolute; top: 50px; left: 0; width: 100%; padding: .5em 0; }
 		.select2 {
@@ -463,7 +462,9 @@ footer {
 			.select2-selection { border-radius: 0; }
 		}
 		.table-leden, .table-users {
-			overflow-x: scroll;
+			@media #{$mobile} {
+				overflow-x: scroll;
+			}
 		}
 	}
 	#leiding table:not(:first-of-type) { width: 290px;}
@@ -502,6 +503,23 @@ button.givers, button.jins { margin-left: 30px;}
 .btn-primary {
 	border-radius: 0;
 	.fa-phone { width: 1em; }
+}
+
+.btn-submit { @extend .btn-green; }
+
+.btn-green {
+	background-color: $accent; border: none; color: white; padding: .6em; border-radius: 0;
+	&:active { background-color: $theme; box-shadow: 2px 2px 2px 2px $accent inset;}
+}
+a.btn-green {
+	&:active { background-color: $theme; box-shadow: 2px 2px 2px 2px $accent inset; color: #fff; }
+	a:hover { opacity: 1; }
+}
+
+.btn-gray {
+	@extend .btn-submit;
+	background-color: #aaa;
+	&:active { background-color: #aaa; box-shadow: 2px 2px 2px 2px #888 inset;}
 }
 
 // END ADMIN //

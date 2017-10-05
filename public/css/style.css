@@ -415,14 +415,6 @@ form input[type="text"], form input[type="password"], form input[type="email"] {
   padding-left: .5em; }
 form button:focus {
   outline: none; }
-form .btn-submit {
-  background-color: #324F02;
-  border: none;
-  color: white;
-  padding: .6em; }
-  form .btn-submit:active {
-    background-color: #4e7a05;
-    box-shadow: 2px 2px 2px 2px #324F02 inset; }
 form label.checkbox-label, form label.radio-label {
   font-weight: normal; }
 form .contact-form {
@@ -702,7 +694,7 @@ footer {
   @media (max-width: 767px) {
     #login {
       width: 100%; } }
-  #login button.btn-submit {
+  #login button.btn-submit, #login button.btn-gray {
     width: 100%; }
   #login ul {
     width: auto; }
@@ -734,6 +726,9 @@ footer {
     z-index: -1; }
   #leiding > .row > .one-fifth {
     margin-top: 3em; }
+    @media (max-width: 767px) {
+      #leiding > .row > .one-fifth {
+        display: none; } }
   #leiding main {
     padding: 2em 5em;
     margin-top: 50px; }
@@ -744,7 +739,8 @@ footer {
       width: 85%; }
       @media (max-width: 767px) {
         #leiding main.leden {
-          width: 100%; } }
+          width: 100%;
+          margin: 0; } }
     #leiding main p.success {
       text-align: center;
       background-color: #d2fbc8;
@@ -758,8 +754,9 @@ footer {
       float: right; }
       #leiding main .select2 .select2-selection {
         border-radius: 0; }
-    #leiding main .table-leden, #leiding main .table-users {
-      overflow-x: scroll; }
+    @media (max-width: 767px) {
+      #leiding main .table-leden, #leiding main .table-users {
+        overflow-x: scroll; } }
   #leiding #leiding table:not(:first-of-type) {
     width: 290px; }
 
@@ -811,6 +808,29 @@ button.givers, button.jins {
   border-radius: 0; }
   .btn-primary .fa-phone {
     width: 1em; }
+
+.btn-green, .btn-submit, .btn-gray {
+  background-color: #324F02;
+  border: none;
+  color: white;
+  padding: .6em;
+  border-radius: 0; }
+  .btn-green:active, .btn-submit:active, .btn-gray:active {
+    background-color: #4e7a05;
+    box-shadow: 2px 2px 2px 2px #324F02 inset; }
+
+a.btn-green:active, a.btn-submit:active, a.btn-gray:active {
+  background-color: #4e7a05;
+  box-shadow: 2px 2px 2px 2px #324F02 inset;
+  color: #fff; }
+a.btn-green a:hover, a.btn-submit a:hover, a.btn-gray a:hover {
+  opacity: 1; }
+
+.btn-gray {
+  background-color: #aaa; }
+  .btn-gray:active {
+    background-color: #aaa;
+    box-shadow: 2px 2px 2px 2px #888 inset; }
 
 .cke_top, .cke_bottom {
   background: #ECECEC !important; }

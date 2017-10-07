@@ -18,11 +18,13 @@
             <ul id="schakel">
                 @foreach ($schakeltjes as $schakeltje)
                     <li class="schakeltje">
-                        <form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right">
-                            {{ csrf_field() }}
-                            {{ method_field('delete') }}
-                            <button type="submit"><i class="fa fa-trash"></i></button>
-                        </form>
+                        @if (Auth::check())
+                            <form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                                <button type="submit"><i class="fa fa-trash"></i></button>
+                            </form>
+                        @endif
                         <a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
                     </li>
                 @endforeach

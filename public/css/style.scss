@@ -43,7 +43,10 @@ table {
 
 //-- GRID --//
 
-.row {width: 100%; height: 100%; display: inline-block;}
+.row {
+	width: 100%; height: 100%; display: inline-block;
+	&.success { height: auto; background-color: #dff0d8; }
+}
 .full {width: 100%; float: left;}
 .one-half {width: 50%; float: left;}
 .one-third {width: 33%; float: left;}
@@ -107,7 +110,11 @@ main {
 		width: 960px; margin: 350px auto 0; padding-top: 2em;
 		&#news { margin-top: 2em; }
 	}
-	&#contact { margin-top: 400px; }
+	&#contact {
+		@media #{$tablet} {
+			margin-top: 400px;
+		}
+	}
 }
 
 
@@ -377,19 +384,27 @@ section {
 	@media #{$tablet} {
 		position: absolute; z-index: 0;
 	}
+	@media #{$mobile} {
+		position: static; z-index: 0; margin-bottom: -200px;
+	}
 	.map {
 		width: 100%; height: 500px; background-color: #ddd;
-		@media #{$tablet} {
-			position: absolute;
-		}
+		@media #{$tablet} { position: absolute; }
+		@media #{$mobile} { display: none !important; }
 		iframe {width: 100%; height: 100%;}
 	}
 	.contact {
+		@media #{$mobile} {
+			margin: 8em 3em; color: gray;
+			position: relative;
+			z-index: 2;
+			a { color: $theme; text-decoration: none; }
+		}
 		@media #{$tablet} {
 			position: absolute; z-index: 2; right: 0;
+			height: 20em; margin: 5em; padding: 2em; background-color: rgba(50,79,2,.9); color: white;
+			a { color: white; text-decoration: none; }
 		}
-		height: 20em; margin: 5em; padding: 2em; background-color: rgba(50,79,2,.9); color: white;
-		a { color: white; text-decoration: none; }
 	}
 }
 #contact-form {
@@ -456,7 +471,11 @@ footer {
 			width: 85%;
 			@media #{$mobile} { width: 100%; margin: 0; }
 		}
-		p.success { text-align: center; background-color: #d2fbc8; color: green; position: absolute; top: 50px; left: 0; width: 100%; padding: .5em 0; }
+		p.success {
+			text-align: center; background-color: #d2fbc8; color: green;
+			position: absolute; top: 50px; left: 0; width: 100%; padding: .5em 0;
+
+		}
 		.select2 {
 			float: right;
 			.select2-selection { border-radius: 0; }
@@ -532,6 +551,8 @@ a.btn-green {
 .mobile-only {
 	@media #{$tablet} { display: none !important; }
 }
+
+div.alert { margin-bottom: 0; }
 
 @media print {
 	#background-img, #leiding .one-fifth, #checks { display: none; }

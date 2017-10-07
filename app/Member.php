@@ -84,6 +84,7 @@ class Member extends Model
 				$this->tak_id = Tak::where('name', 'Jins')->first()->id;
 				break;
 			case 'Jins':
+				$this->leiding = 1;
 				$this->tak_id = Tak::where('name', 'Leiding')->first()->id;
 				break;
 		}
@@ -110,10 +111,40 @@ class Member extends Model
 				$this->year = 3;
 				break;
 			case 'Leiding':
+				$this->leiding = 0;
 				$this->tak_id = Tak::where('name', 'Jins')->first()->id;
 				$this->year = 1;
 				break;
 		}
 		$this->save();
+	}
+
+	public function formatPhone()
+	{
+		$number = str_replace('+','00', $this->tel);
+		$number =  preg_replace('/\D/', '', $number);
+		return $number;
+	}
+
+	public function formatMobile()
+	{
+		$number = str_replace('+','00', $this->gsm);
+		$number =  preg_replace('/\D/', '', $number);
+		return $number;
+	}
+
+	public function getEmails()
+	{
+		$emails = [];
+		if (!empty($this->email)) {
+			$emails[] = str_replace(';', '<br>', $this->email);
+		} else {
+			foreach ($this->contacts as $contact) {
+				if (!empty($contact->email) && !in_array($contact->email, $emails)) {
+					$emails[] = $contact->email;
+				}
+			}
+		}
+		return implode('<br>', $emails);
 	}
 }

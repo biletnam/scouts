@@ -92,7 +92,7 @@ class ArticleController extends Controller
 	    $article->body = $input['body'];
 	    $article->save();
 
-	    Session::flash('success', 'Artikel toegevoegd');
+	    Session::flash('success', 'Wijzigingen opgeslagen');
 	    return redirect()->route('nieuws.index');
     }
 

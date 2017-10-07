@@ -57,18 +57,15 @@
 								<tr>
 									<td>{{ $member->firstname }}</td>
 									<td>{{ $member->name }}</td>
-									<td><a href="tel:{{ preg_replace('/[^0-9.]+/', '', $member->gsm) }}" class="btn btn-primary"><i class="fa fa-phone"></i> Bellen</a></td>
+									<td>
+										<a href="tel:{{ empty($member->gsm) && !empty($member->contacts()->first()) ? $member->contacts()->first()->formatMobile() : $member->formatMobile() }}"
+											class="btn btn-primary">
+											<i class="fa fa-phone"></i> Bellen
+										</a>
+									</td>
 									<td class="text-center">{{ $member->year }}</td>
 									<td>
-										@if (isset($member->email))
-											{{ str_replace(';', '<br>', $member->email) }}
-										@else
-											@foreach ($member->contacts as $contact)
-												@if (isset($contact->email))
-													{{ $contact->email }}<br>
-												@endif
-											@endforeach
-										@endif
+										{!! $member->getEmails() !!}
 									</td>
 									@if (Auth::user()->hasPermission('account-management'))
 										<td class="paid">

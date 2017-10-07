@@ -261,7 +261,7 @@ function addContactGoogleMaps(container, latitude, longitude) {
 function addContactGoogleMapsMarker(map, latitude, longitude, title, extern_url) {
 
 	var marker_image = {
-           	url: "assets/img/marker.svg",
+           	url: "img/marker.svg",
            	anchor: new google.maps.Point(0, 80),
         	scaledSize: new google.maps.Size(50, 80)
         };

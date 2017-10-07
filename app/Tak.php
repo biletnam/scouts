@@ -19,7 +19,7 @@ class Tak extends Model
                     ->join('roles', 'roles.id', '=', 'user_roles.role_id')
                     ->join('members', 'users.member_id', '=', 'members.id')
                     ->where('roles.name', 'takleiding')
-                    ->where('members.tak_id', $this->id)->first();
+                    ->where('users.tak_id', $this->id)->first();
     }
 
     public function members() {

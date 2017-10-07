@@ -81,7 +81,7 @@
 									</td>
 									<td>{{ $takleiding->address }}<br>{{ $takleiding->zip.' '.$takleiding->city }}</td>
 									<td><a href="mailto:{{ $takleiding->username }}">{{ $takleiding->username }}</a></td>
-									<td><a href="{{ preg_replace('/\D/', '', $takleiding->gsm) }}">{{ $takleiding->gsm }}</a></td>
+									<td><a href="tel:{{ preg_replace('/\D/', '', str_replace('+', '00', $takleiding->gsm)) }}">{{ $takleiding->gsm }}</a></td>
 								</tr>
 								@foreach ($tak->leaders as $leader)
 									@if ($leader->id != $takleiding->id)
@@ -92,7 +92,7 @@
 											</td>
 											<td>{{ $leader->member->address }}<br>{{ $leader->member->zip.' '.$leader->member->city }}</td>
 											<td><a href="mailt:{{ $leader->username }}">{{ $leader->username }}</a></td>
-											<td><a href="{{ preg_replace('/\D/', '', $leader->gsm) }}">{{ $leader->member->gsm }}</a></td>
+											<td><a href="tel:{{ $leader->member->formatMobile() }}">{{ $leader->member->gsm }}</a></td>
 										</tr>
 									@endif
 								@endforeach
@@ -116,10 +116,10 @@
 										{{ ($leader->show_nick) ? '<br>(' . $leader->nickname . ')' : '' }}
 										<br>
 										<a href="mailto:{{ $leader->username }}">{{ $leader->username }}</a><br>
-										<a href="tel:">{{ $leader->member->gsm }}</a>
+										<a href="tel:{{ $leader->member->formatMobile() }}">{{ $leader->member->gsm }}</a>
 									</p>
 									<div class="pasfoto">
-										<img class="pull-right" src="assets/img/leaders/{{ $leader->img }}" alt="{{ $leader->firstname . ' ' . $leader->name }}">
+										<img class="pull-right" src="img/leaders/{{ $leader->img }}" alt="{{ $leader->member->firstname . ' ' . $leader->member->name }}">
 										<div class="overlay"><span>Klik om te vergroten</span></div>
 									</div>
 								</div>

@@ -15,6 +15,7 @@ class MailchimpService
 
 	public function __construct() {
 		$this->mailchimp = Newsletter::getApi();
+		$this->test = config('laravel-newsletter.lists.test.id');
 		$this->general = config('laravel-newsletter.lists.general.id');
 		$this->schakeltje = config('laravel-newsletter.lists.schakeltje.id');
 		$this->kapoenen = config('laravel-newsletter.lists.kapoenen.id');
@@ -68,6 +69,7 @@ class MailchimpService
 	public function getLists() {
 		$lists = [
 			self::getList($this->general),
+			self::getList($this->test),
 			self::getList($this->schakeltje),
 			self::getList($this->kapoenen),
 			self::getList($this->welpen),
@@ -96,6 +98,7 @@ class MailchimpService
 	public function makeCmpaign($list, $subject) {
 		$list_senders = [
 			$this->general      => 'groepsleiding@18bp.be',
+			$this->test         => 'groepsleiding@18bp.be',
 			$this->schakeltje   => 'redactie@18bp.be',
 			$this->kapoenen     => 'kapoenenleiding@18bp.be',
 			$this->welpen       => 'welpenleiding@18bp.be',

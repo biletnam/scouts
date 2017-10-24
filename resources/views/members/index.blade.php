@@ -10,7 +10,7 @@
 				<h3>{{ ($index !== 'jojos') ? ucfirst($index) : 'Jojo\'s' }}: {{ count($tak) }}</h3>
 				<a class="pull-right print" href="{{ route('ledenlijst.print', [$index]) }}"><i class="fa fa-print"></i>Print ledenlijst</a>
 
-				@if (Auth::user()->hasPermission('account-management'))
+				@if (Auth::user()->hasPermission('administratie'))
 					<a href="{{ route('ledenlijst.create', [$index]) }}" class="add"><i class="fa fa-plus"></i> Nieuw lid</a>
 				@endif
 
@@ -46,7 +46,7 @@
 							<th>GSM</th>
 							<th>Jaar</th>
 							<th>E-mailadres</th>
-							@if (Auth::user()->hasPermission('account-management'))
+							@if (Auth::user()->hasPermission('administratie'))
 								<th class="betaald">Betaald</th>
 							@endif
 						</tr>
@@ -67,13 +67,13 @@
 									<td>
 										{!! $member->getEmails() !!}
 									</td>
-									@if (Auth::user()->hasPermission('account-management'))
+									@if (Auth::user()->hasPermission('administratie'))
 										<td class="paid">
 											<i class="fa {{ ($member->paid) ? 'fa-check' : 'fa-remove' }}" data-id="{{ $member->id }}"></i>
 										</td>
 									@endif
 									<td><a href="{{ route('ledenlijst.show', [$member]) }}"><i class="fa fa-eye"></i></a></td>
-									@if (Auth::user()->hasPermission('account-management'))
+									@if (Auth::user()->hasPermission('administratie'))
 										<td><a href="{{ route('ledenlijst.edit', [$member]) }}"><i class="fa fa-pencil"></i></a></td>
 										<td>
 											<form action="{{ route('ledenlijst.destroy', ['member' => $member]) }}" class="delete" method="POST">

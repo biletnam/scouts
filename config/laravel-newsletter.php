@@ -29,6 +29,9 @@ return [
             'general' => [
                 'id' => env('MAILCHIMP_LIST_ID_GENERAL'),
             ],
+            'test' => [
+                'id' => env('MAILCHIMP_LIST_ID_TEST'),
+            ],
             'schakeltje' => [
                 'id' => env('MAILCHIMP_LIST_ID_SCHAKELTJE'),
             ],

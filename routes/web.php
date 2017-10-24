@@ -36,34 +36,42 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::get('/dashboard', 'PageController@dashboard');
 	Route::get('/nuttig', 'PageController@nuttig')->name('nuttig');
 
-	// Member contacts
-	Route::resource('contact', 'ContactController', ['except' => ['index', 'show', 'create']]);
-	Route::get('/contact/{member}/create', 'ContactController@create')->name('contact.create');
-	Route::get('/contacts/get-for-member-ajax/{member_id}', 'ContactController@getContactsByMemberId');
 
 	// Members
-	Route::get('/ledenlijst/overgang', 'MemberController@doOvergang')->name('ledenlijst.overgang');
-	Route::get('/ledenlijst/undo-overgang', 'MemberController@undoOvergang')->name('ledenlijst.undo-overgang');
+	Route::group(['middleware' => 'has-permission:administratie'], function () {
+		Route::resource('ledenlijst', 'MemberController', ['except' => ['index', 'create'], 'parameters' => ['ledenlijst' => 'member']]);
+		Route::get('/ledenlijst/overgang', 'MemberController@doOvergang')->name('ledenlijst.overgang');
+		Route::get('/ledenlijst/undo-overgang', 'MemberController@undoOvergang')->name('ledenlijst.undo-overgang');
+
+		Route::get('/ledenlijst/{tak?}/create', 'MemberController@create')->name('ledenlijst.create');
+		Route::post('/ledenlijst/toggle-paid/{id}', 'MemberController@togglePaid');
+
+		// Member contacts
+		Route::resource('contact', 'ContactController', ['except' => ['index', 'show', 'create']]);
+		Route::get('/contact/{member}/create', 'ContactController@create')->name('contact.create');
+		Route::get('/contacts/get-for-member-ajax/{member_id}', 'ContactController@getContactsByMemberId');
+
+		// Waitinglist
+		Route::get('/wachtlijst/overgang', 'WaitinglistController@doOvergang')->name('wachtlijst.overgang');
+		Route::get('/wachtlijst/undo-overgang', 'WaitinglistController@undoOvergang')->name('wachtlijst.undo-overgang');
+		Route::get('/wachtlijst/excelify', 'WaitinglistController@excelify')->name('wachtlijst.excelify');
+		Route::resource('wachtlijst', 'WaitinglistController', ['except' => ['create'], 'parameters' => ['wachtlijst' => 'waitinglist']]);
+		Route::get('/wachtlijst/{tak?}/create', 'WaitinglistController@create')->name('wachtlijst.create');
+		Route::post('/wachtlijst/register', 'WaitinglistController@register')->name('wachtlijst.register');
+	});
+
+	Route::get('/ledenlijst', 'MemberController@index')->name('ledenlijst.index');
 	Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');
 	Route::get('/ledenlijst/get-ajax', 'MemberController@getAjax');
-	Route::resource('ledenlijst', 'MemberController', ['except' => 'create', 'parameters' => ['ledenlijst' => 'member']]);
 	Route::match(['get', 'post'], '/ledenlijst/{tak?}/print', 'MemberController@print')->name('ledenlijst.print');
-	Route::get('/ledenlijst/{tak?}/create', 'MemberController@create')->name('ledenlijst.create');
-	Route::post('/ledenlijst/toggle-paid/{id}', 'MemberController@togglePaid');
 
-	// Waitinglist
-	Route::get('/wachtlijst/overgang', 'WaitinglistController@doOvergang')->name('wachtlijst.overgang');
-	Route::get('/wachtlijst/undo-overgang', 'WaitinglistController@undoOvergang')->name('wachtlijst.undo-overgang');
-	Route::get('/wachtlijst/excelify', 'WaitinglistController@excelify')->name('wachtlijst.excelify');
-	Route::resource('wachtlijst', 'WaitinglistController', ['except' => ['create'], 'parameters' => ['wachtlijst' => 'waitinglist']]);
-	Route::get('/wachtlijst/{tak?}/create', 'WaitinglistController@create')->name('wachtlijst.create');
-	Route::post('/wachtlijst/register', 'WaitinglistController@register')->name('wachtlijst.register');
-
-	// Users
-	Route::post('/gebruikers/add-role', 'UserController@addRole')->name('gebruikers.add-role');
-	Route::delete('/gebruikers/drop-role', 'UserController@dropRole')->name('gebruikers.drop-role');
-	Route::resource('gebruikers', 'UserController', ['except' => 'create', 'parameters' => ['gebruiker' => 'user']]);
-	Route::get('/gebruikers/{type?}/create', 'UserController@create')->name('gebruikers.create');
+	Route::group(['middleware' => 'has-permission: account-management'], function () {
+		// Users
+		Route::post('/gebruikers/add-role', 'UserController@addRole')->name('gebruikers.add-role');
+		Route::delete('/gebruikers/drop-role', 'UserController@dropRole')->name('gebruikers.drop-role');
+		Route::resource('gebruikers', 'UserController', ['except' => 'create', 'parameters' => ['gebruiker' => 'user']]);
+		Route::get('/gebruikers/{type?}/create', 'UserController@create')->name('gebruikers.create');
+	});
 
 	// Mailings
 	Route::get('mailinglijst/{list}/new', 'MailinglistController@newCampaign')->name('mailinglijst.new-campaign-for-list');

@@ -40,11 +40,11 @@ class SchakeltjeController extends Controller
 	    if ($filename != '' && $filename != null) {
 	    	$file->move(public_path('schakeltjes/'), $filename.'.pdf');
 	    } else {
-	    	$filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
+		    $filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
 		    $file->move(public_path('schakeltjes'), $file->getClientOriginalName());
 	    }
 
-	    $url = asset('schakeltjes/'.$filename) . '.'.$file->getClientOriginalExtension();
+	    $url = 'schakeltjes/'.$filename . '.'.$file->getClientOriginalExtension();
 
 	    $schakeltje = new Schakeltje([
 	    	'title' => $filename,
@@ -80,8 +80,12 @@ class SchakeltjeController extends Controller
 
     public function archive(string $folder = '')
     {
-    	dd(Storage::directories(public_path('schakeltje/')));
-    	$schakeltjes = Schakeltje::where('archived', 1)->orderBy('created_at', 'desc')->get();
+    	$folders = Storage::disk('schakeltjes')->directories();
+    	$schakeltjes = [];
+    	foreach ($folders as $folder) {
+    		$schakeltjes[$folder] = Schakeltje::where([['archived', '=', 1], ['url', 'LIKE', 'schakeltjes/' . $folder . '/%']])
+		                                        ->orderBy('created_at', 'desc')->get();
+	    }
     	return view('schakeltjes.archive')->with(['schakeltjes' => $schakeltjes]);
     }
 }

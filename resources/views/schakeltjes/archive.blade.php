@@ -5,15 +5,20 @@
 	<div class="parallax-wrapper">
 		<main>
 			<h1 class="title">SCHAKELTJESARCHIEF</h1>
-			<ul id="schakel">
-				@forelse ($schakeltjes as $schakeltje)
-					<li class="schakeltje">
-						<a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
-					</li>
-				@empty
-					<li class="text-center">Er zijn momenteel geen garchiveerde schakeltjes.</li>
-				@endforelse
-			</ul>
+			@foreach($schakeltjes as $folder => $schakeltjes)
+				@if (!$schakeltjes->isEmpty())
+					<h2>{{ $folder }}</h2>
+					<ul id="schakel">
+						@forelse ($schakeltjes as $schakeltje)
+							<li class="schakeltje">
+								<a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
+							</li>
+						@empty
+							<li class="text-center">Er zijn momenteel geen garchiveerde schakeltjes.</li>
+						@endforelse
+					</ul>
+				@endif
+			@endforeach
 			<a href="{{ route('schakeltje.index') }}"><i class="fa fa-chevron-left"></i> Terug naar het overzicht</a>
 		</main>
 	</div>

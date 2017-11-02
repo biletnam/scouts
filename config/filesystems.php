@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+	    'schakeltjes' => [
+	    	'driver' => 'local',
+		    'root' => public_path('schakeltjes'),
+		    'uri' => env('APP_URL').'/schakeltjes',
+		    'visibility' => 'public'
+	    ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

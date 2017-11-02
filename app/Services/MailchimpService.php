@@ -91,7 +91,8 @@ class MailchimpService
 	}
 
 	protected function getMembersForList($list) {
-		$list['members'] = $this->mailchimp->get('lists/'.$list['id'].'/members')['members'];
+		$count = $this->mailchimp->get('lists/'.$list['id'].'/members?fields=total_items')['total_items'];
+		$list['members'] = $this->mailchimp->get('lists/'.$list['id'].'/members?count=' . $count)['members'];
 		return $list;
 	}
 

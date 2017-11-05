@@ -16,6 +16,9 @@ table {
     border-left: 1px solid #dddddd;
     text-align: left;
     width: 300px; }
+  @media (min-width: 767px) {
+    table#schakel {
+      width: 50%; } }
   table.table {
     width: 100%;
     max-width: 100%;
@@ -226,6 +229,9 @@ main {
   .navbar.mobile-active .navbar-toggle {
     background-color: #4e7a05 !important;
     transition: background-color .2s; }
+  @media (min-width: 767px) {
+    .navbar .navbar-collapse i.fa-fw {
+      display: none; } }
   .navbar #nav {
     transition: background-color .2s;
     float: right;
@@ -388,7 +394,7 @@ ul, ol {
   width: 100%;
   font-weight: 700; }
 
-form.edit input[type="text"], form.edit input[type="email"], form.edit select {
+form.edit input[type="text"], form.edit input[type="email"], form.edit input[type="password"], form.edit select {
   width: 100%;
   padding: .6em;
   margin-bottom: .5em; }
@@ -607,15 +613,6 @@ section .das {
   section .das img {
     display: inline-block; }
 
-#hakken, #sjorren {
-  padding-top: 30px; }
-
-.techniekTitel {
-  background: #e1e1e1;
-  margin-bottom: -21px;
-  margin-left: -30px;
-  padding: 15px 0 15px 50px; }
-
 .map-wrap {
   height: 500px; }
   @media (min-width: 767px) {
@@ -781,7 +778,10 @@ footer {
     width: 290px; }
 
 .errors {
-  color: red; }
+  color: red;
+  height: auto;
+  background-color: #f2dede;
+  margin: auto; }
 
 #instellingen {
   width: 50%; }
@@ -823,6 +823,9 @@ button.givers, button.jins {
 
 .fa-phone, .fa-mobile, .fa-envelope-o {
   width: 1.5em; }
+
+.fa-fw {
+  margin-right: .5em; }
 
 .btn-primary {
   border-radius: 0; }

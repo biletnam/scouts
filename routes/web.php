@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 		Route::resource('gebruikers', 'UserController', ['except' => 'create', 'parameters' => ['gebruiker' => 'user']]);
 		Route::get('/gebruikers/{type?}/create', 'UserController@create')->name('gebruikers.create');
 	});
+	Route::get('instellingen', 'UserController@settings')->name('users.settings');
+	Route::post('instellingen', 'UserController@storeSettings')->name('users.save-settings');
 
 	// Mailings
 	Route::get('mailinglijst/{list}/new', 'MailinglistController@newCampaign')->name('mailinglijst.new-campaign-for-list');

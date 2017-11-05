@@ -15,20 +15,26 @@
             </p>
 
             <p>Hieronder kan u de recentste schakeltjes downloaden.</p>
-            <ul id="schakel">
-                @foreach ($schakeltjes as $schakeltje)
-                    <li class="schakeltje">
-                        @if (Auth::check())
-                            <form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="submit"><i class="fa fa-trash"></i></button>
-                            </form>
-                        @endif
-                        <a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
-                    </li>
-                @endforeach
-            </ul>
+            <table id="schakel">
+                <tbody>
+                    @foreach ($schakeltjes as $schakeltje)
+                        <tr>
+                            <td class="schakeltje">
+                                <a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
+                            </td>
+                            @if (Auth::check())
+                                <td>
+                                    <form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right delete">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                        <button type="submit"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             @if (Auth::check())
             <h3>Schakeltje toevoegen</h3>
             <form action="{{ route('schakeltje.store') }}" method="POST" enctype="multipart/form-data">

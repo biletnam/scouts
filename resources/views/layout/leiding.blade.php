@@ -10,7 +10,7 @@
 	<!-- Le styles -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
@@ -35,34 +35,34 @@
 	<div class="collapse navbar-collapse navbar-ex1-collapse" id="nav">
 		<ul class="nav">
 			<li {{ (Request::is('leiding/dashboard')) ? 'class="active"' : '' }}>
-				<a href="leiding/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+				<a href="leiding/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 			</li>
 			@if (Auth::user()->hasPermission('nieuws'))
 				<li {{ (Request::is('nieuws')) ? 'class="active"' : '' }}>
-					<a href="{{ route('nieuws.index') }}">Nieuws</a>
+					<a href="{{ route('nieuws.index') }}"><i class="fa fa-newspaper-o fa-fw"></i>Nieuws</a>
 				</li>
 			@endif
 			@if (Auth::user()->hasPermission('account-management'))
 				<li {{ (Request::is('leiding/gebruikers')) ? 'class="active"' : '' }}>
-					<a href="{{ route('gebruikers.index') }}">Gebruikers</a>
+					<a href="{{ route('gebruikers.index') }}"><i class="fa fa-user-circle-o fa-fw"></i>Gebruikers</a>
 				</li>
 			@endif
 			@if (Auth::user()->hasPermission('administratie'))
 				<li {{ (Request::is('leiding/wachtlijst')) ? 'class="active"' : '' }}>
-					<a href="{{ route('wachtlijst.index') }}">Wachtlijst</a>
+					<a href="{{ route('wachtlijst.index') }}"><i class="fa fa-user-plus fa-fw"></i>Wachtlijst</a>
 				</li>
 			@endif
 			<li {{ (Request::is('leiding/ledenlijst')) ? 'class="active"' : '' }}>
-				<a href="{{ route('ledenlijst.index') }}">Ledenlijst</a>
+				<a href="{{ route('ledenlijst.index') }}"><i class="fa fa-users fa-fw"></i>Ledenlijst</a>
 			</li>
 			<li {{ (Request::is('leiding/mailinglijst')) ? 'class="active"' : '' }}>
-				<a href="{{ route('mailinglijst.index') }}">Mailinglijst</a>
+				<a href="{{ route('mailinglijst.index') }}"><i class="fa fa-send fa-fw"></i>Mailinglijst</a>
 			</li>
 
 			{{--Mobile hidden--}}
-			<li class="mobile-only"><a href="{{ url('/') }}"><i class="fa fa-globe"></i> Naar de website</a></li>
-			<li class="mobile-only"><a href="leiding/instellingen"><i class="fa fa-lock"></i> Wachtwoord wijzigen</a></li>
-			<li class="mobile-only"><a href="logout"><i class="fa fa-sign-out"></i> Afmelden</a></li>
+			<li class="mobile-only"><a href="{{ url('/') }}"><i class="fa fa-globe fa-fw"></i> Naar de website</a></li>
+			<li class="mobile-only"><a href="leiding/instellingen"><i class="fa fa-lock fa-fw"></i> Wachtwoord wijzigen</a></li>
+			<li class="mobile-only"><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Afmelden</a></li>
 		</ul>
 	</div>
 </nav>
@@ -77,9 +77,9 @@
 			<div class="one-fifth">
 				<section>
 					<span>{{ 'Welkom '.ucfirst(Auth::user()->firstname).'!' }}<br></span>
-					<a href="{{ url('/') }}"><i class="fa fa-globe"></i> Naar de website</a><br>
-					<a href="leiding/instellingen"><i class="fa fa-lock"></i> Wachtwoord wijzigen</a><br>
-					<a href="logout"><i class="fa fa-sign-out"></i> Afmelden</a>
+					<a href="{{ url('/') }}"><i class="fa fa-globe fa-fw"></i> Naar de website</a><br>
+					<a href="leiding/instellingen"><i class="fa fa-lock fa-fw"></i> Wachtwoord wijzigen</a><br>
+					<a href="logout"><i class="fa fa-sign-out fa-fw"></i> Afmelden</a>
 				</section>
 			</div>
 		</div>

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Role;
@@ -128,6 +129,34 @@ class UserController extends Controller
     {
         User::destroy($id);
         return redirect()->route('gebruikers.index');
+    }
+
+    public function settings()
+    {
+    	return view('users.settings');
+    }
+
+    public function storeSettings(Request $request)
+    {
+    	$this->validate($request, [
+    		'old_password' => 'required|min:8',
+		    'password' => 'min:8|confirmed'
+	    ]);
+
+    	$user = Auth::user();
+    	$old_password = $request->get('old_password');
+    	$password = $request->get('password');
+
+    	$hasher = app('hash');
+    	if ($hasher->check($old_password, Auth::user()->getAuthPassword())) {
+    		$user->password = bcrypt($password);
+    		$user->save();
+    		Session::flash('success', 'Wachtwoord succesvol gewijzigd');
+    		return redirect()->back();
+	    } else {
+    		Session::flash('error', 'Password incorrect');
+    		return redirect()->back();
+	    }
     }
 
     public function addRole(Request $request) {

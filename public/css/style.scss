@@ -25,6 +25,9 @@ table {
 		text-align: left;
 		width: 300px;
 	}
+	&#schakel {
+		@media #{$tablet} { width: 50%; }
+	}
 	&.table {
 		width: 100%; max-width: 100%; margin-bottom: 60px;
 		tbody > tr > td { padding: 8px; line-height: 1.42857143; vertical-align: top; border-top: 1px solid #ddd; }
@@ -141,6 +144,12 @@ main {
 		.navbar-toggle { background-color: $theme !important; transition: background-color .2s; }
 	}
 
+	.navbar-collapse {
+		@media #{$tablet} {
+			i.fa-fw { display: none; }
+		}
+	}
+
 	#nav {
 		transition: background-color .2s;
 		float: right; padding-left: 2.127%; padding-right: 2.127%;
@@ -236,7 +245,7 @@ ul, ol { list-style-type: none; padding: 0; }
 
 form {
 	&.edit {
-		input[type="text"], input[type="email"], select {width: 100%; padding: .6em; margin-bottom: .5em;}
+		input[type="text"], input[type="email"], input[type="password"], select {width: 100%; padding: .6em; margin-bottom: .5em;}
 		input[type="checkbox"] {
 			width: 1.2em; height: 1.2em;
 			input {display: none;}
@@ -368,15 +377,6 @@ section {
 
 // END DEN18 //
 
-
-//-- TECHNIEKEN --//
-
-#hakken, #sjorren {	padding-top: 30px;}
-.techniekTitel { background: #e1e1e1; margin-bottom: -21px; margin-left: -30px; padding: 15px 0 15px 50px; }
-
-// END TECHNIEKEN //
-
-
 //-- CONTACT --//
 .map-wrap {
 	@extend header;
@@ -489,7 +489,7 @@ footer {
 	#leiding table:not(:first-of-type) { width: 290px;}
 }
 
-.errors { color: red;}
+.errors { color: red; height: auto; background-color: #f2dede; margin: auto; }
 #instellingen {
 	width: 50%;
 	ul{
@@ -518,6 +518,7 @@ button.kapoenen, button.welpen, button.jojos,
 button.givers, button.jins { margin-left: 30px;}
 .cancel { margin-left: 20px;}
 .fa-phone, .fa-mobile, .fa-envelope-o {width: 1.5em;}
+.fa-fw { margin-right: .5em; }
 
 .btn-primary {
 	border-radius: 0;

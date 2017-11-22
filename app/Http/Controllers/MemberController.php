@@ -39,6 +39,9 @@ class MemberController extends Controller
 	 */
 	public function create($tak)
 	{
+		if ($tak = 'jojos') {
+			$tak = 'Jojo\'s';
+		}
 		$tak = Tak::where('name', 'LIKE', '%'.$tak.'%')->first();
 		return view('members.create')->withTak($tak);
 	}

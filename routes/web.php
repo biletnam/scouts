@@ -38,8 +38,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 
 
 	// Members
+	Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');
+	Route::get('/ledenlijst/get-ajax', 'MemberController@getAjax');
+	Route::get('/ledenlijst/{member}', 'MemberController@show')->name('ledenlijst.show');
+
 	Route::group(['middleware' => 'has-permission:administratie'], function () {
-		Route::resource('ledenlijst', 'MemberController', ['except' => ['index', 'create'], 'parameters' => ['ledenlijst' => 'member']]);
+		Route::resource('ledenlijst', 'MemberController', ['except' => ['index', 'create', 'show'], 'parameters' => ['ledenlijst' => 'member']]);
 		Route::get('/ledenlijst/overgang', 'MemberController@doOvergang')->name('ledenlijst.overgang');
 		Route::get('/ledenlijst/undo-overgang', 'MemberController@undoOvergang')->name('ledenlijst.undo-overgang');
 
@@ -61,8 +65,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	});
 
 	Route::get('/ledenlijst', 'MemberController@index')->name('ledenlijst.index');
-	Route::get('/ledenlijst/excelify', 'MemberController@excelify')->name('ledenlijst.excelify');
-	Route::get('/ledenlijst/get-ajax', 'MemberController@getAjax');
 	Route::match(['get', 'post'], '/ledenlijst/{tak?}/print', 'MemberController@print')->name('ledenlijst.print');
 
 	Route::group(['middleware' => 'has-permission: account-management'], function () {
@@ -77,6 +79,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 
 	// Mailings
 	Route::get('mailinglijst/{list}/new', 'MailinglistController@newCampaign')->name('mailinglijst.new-campaign-for-list');
+	Route::post('mailinglijst/{list}/add-subscriber', 'MailinglistController@addSubscriber')->name('mailinglijst.add-subscriber');
+	Route::delete('mailinglijst/{list}/remove-subscriber', 'MailinglistController@removeSubscriber')->name('mailinglijst.remove-subscriber');
 	Route::get('mailinglijst/new', 'MailinglistController@newCampaign')->name('mailinglijst.new-campaign');
 	Route::post('mailinglijst/send', 'MailinglistController@sendCampaign')->name('mailinglijst.send-campaign');
 

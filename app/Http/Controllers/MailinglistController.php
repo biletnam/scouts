@@ -57,4 +57,15 @@ class MailinglistController extends Controller
 		}
 		return redirect()->route('mailinglijst.index');
     }
+
+    public function addSubscriber(Request $request, string $list)
+    {
+    	$this->mailchimpService->subscribe($request->get('email'), $list);
+    	return redirect()->back();
+    }
+
+    public function removeSubscriber(Request $request, string $list)
+    {
+    	$this->mailchimpService->unsubscribe($request->get('email'), $list);
+    }
 }

@@ -52,10 +52,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($tak->members as $member): ?>
+				@foreach ($tak->members()->orderBy('year')->orderBy('firstname')->get() as $member)
 					<tr>
-						<td><?= $member->firstname ?></td>
-						<td><?= $member->name ?></td>
+						<td>{{ $member->firstname }}</td>
+						<td>{{ $member->name }}</td>
 						@if (in_array('birthdate', $args))
 							<td>{{ $member->birthdate }}</td>
 						@endif
@@ -91,7 +91,7 @@
 						@endif
 						<td style="border-left: 2px solid #ddd; border-right: 2px solid #ddd;"></td>
 					</tr>
-				<?php endforeach ?>
+				@endforeach
 			</tbody>
 		</table>
 	</main>

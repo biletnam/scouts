@@ -26,7 +26,7 @@
                         <td>{{ $member->firstname }}</td>
                         <td>{{ $member->name }}</td>
                         <td>{{ $member->birthdate }}</td>
-                        <td>{{ $member->email }}</td>
+                        <td>{!! $member->getEmails() !!}</td>
                         <td>{{ $member->tel }}</td>
                         <td>{{ $member->gsm }}</td>
                         <td>{{ $member->address }}</td>

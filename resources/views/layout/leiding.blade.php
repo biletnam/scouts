@@ -90,6 +90,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	$(function() { setTimeout(function() { $('p.success').slideUp(); }, 3000); });
 	var base_url = "{{ url('/') }}";

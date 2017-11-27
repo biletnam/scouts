@@ -7,7 +7,7 @@
 			<a id="add-email" class="btn btn-submit" href="#">
 				<i class="fa fa-plus"></i> e-mailadres toevoegen
 			</a>
-			<a class="btn btn-gray" href="{{ route('mailinglijst.new-campaign-for-list', [strtolower($list['name'])]) }}">
+			<a class="btn btn-gray" href="{{ route('mailinglijst.new-campaign-for-list', [strtolower($list['id'])]) }}">
 				<i class="fa fa-send"></i> nieuwe mail verzenden
 			</a>
 		</p>
@@ -79,8 +79,10 @@
 				icon: 'warning',
 				buttons: ['Nee', 'Ja']
 			}).then((value) => {
-				$('#add-email-form input[name="email"]').val(value);
-				$('#add-email-form').submit();
+				if (value != null) {
+					$('#add-email-form input[name="email"]').val(value);
+					$('#add-email-form').submit();
+				}
 			});
 		});
 	</script>

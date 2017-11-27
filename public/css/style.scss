@@ -542,6 +542,13 @@ a.btn-green {
 	&:active { background-color: #aaa; box-shadow: 2px 2px 2px 2px #888 inset;}
 }
 
+#test-emails {
+	.form-input {
+		a.delete { color: red; font-size: 1.5em; }
+		input { width: calc(100% - 1.5em); }
+	}
+}
+
 // END ADMIN //
 
 //-- CK EDITOR --//

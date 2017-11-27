@@ -91,7 +91,7 @@ class ContactController extends Controller
 		$contact->email = $input['email'];
 		$contact->save();
 
-		return redirect()->route('ledenlijst.edit', [$contact->member_id]);
+		return redirect()->route('ledenlijst.index');
 	}
 
 	/**

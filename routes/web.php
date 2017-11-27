@@ -91,3 +91,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::resource('nieuws', 'ArticleController', ['except' => 'índex', 'parameters' => ['nieuws' => 'article']]);
 
 });
+
+Route::group(['prefix' => 'api','middleware' => ['auth']], function () {
+	Route::post('/mailinglists/test', 'MailinglistController@testCampaign');
+});

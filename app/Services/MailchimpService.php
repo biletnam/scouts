@@ -96,7 +96,7 @@ class MailchimpService
 		return $list;
 	}
 
-	public function makeCmpaign($list, $subject) {
+	public function makeCampaign($list, $subject) {
 		$list_senders = [
 			$this->general      => 'groepsleiding@18bp.be',
 			$this->test         => 'groepsleiding@18bp.be',
@@ -122,8 +122,12 @@ class MailchimpService
 		return $this->mailchimp->post('campaigns', $data);
 	}
 
-	public function sendCampaign(string $body, string $subject, $list) {
-		$campaign = self::makeCmpaign($list,$subject);
+	public function sendCampaign(string $body, string $subject, $list, string $campaignId = '') {
+		if (empty($campaignId)) {
+			$campaign = self::makeCampaign($list,$subject);
+		} else {
+			$campaign = ['id' => $campaignId];
+		}
 		$data = [
 			'template' => [
 				'id' => self::TEMPLATE_ID,
@@ -135,5 +139,25 @@ class MailchimpService
 		];
 		$this->mailchimp->put('campaigns/'.$campaign['id'].'/content', $data);
 		return $this->mailchimp->post('campaigns/'.$campaign['id'].'/actions/send');
+	}
+
+	public function testCampaign(string $body, string $subject, $list, $emails) {
+		$campaign = self::makeCampaign($list,$subject);
+		$data = [
+			'template' => [
+				'id' => self::TEMPLATE_ID,
+				'sections' => [
+					'body' => $body,
+					'header' => '<h2 style="text-align: right; color: #fff;">'.$subject.'</h2>'
+				]
+			],
+		];
+		$this->mailchimp->put('campaigns/'.$campaign['id'].'/content', $data);
+
+		$testData = [
+			'test_emails' => $emails,
+			'send_type' => 'html'
+		];
+		return $this->mailchimp->post('campaigns/'.$campaign['id'].'/actions/test', $testData);
 	}
 }

@@ -855,6 +855,12 @@ a.btn-green a:hover, a.btn-submit a:hover, a.btn-gray a:hover {
     background-color: #aaa;
     box-shadow: 2px 2px 2px 2px #888 inset; }
 
+#test-emails .form-input a.delete {
+  color: red;
+  font-size: 1.5em; }
+#test-emails .form-input input {
+  width: calc(100% - 1.5em); }
+
 .cke_top, .cke_bottom {
   background: #ECECEC !important; }
 

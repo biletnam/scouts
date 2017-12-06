@@ -64,6 +64,13 @@ class SchakeltjeController extends Controller
      */
     public function destroy(Schakeltje $schakeltje)
     {
+    	if ($schakeltje->archived) {
+    		if (file_exists(public_path($schakeltje->url))) {
+			    unlink(public_path($schakeltje->url));
+		    }
+    		$schakeltje->delete();
+	    }
+	    return redirect()->back();
     }
 
     public function archive(string $folder = '')

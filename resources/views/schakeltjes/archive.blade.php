@@ -8,15 +8,26 @@
 			@foreach($schakeltjes as $folder => $schakeltjes)
 				@if (!$schakeltjes->isEmpty())
 					<h2>{{ $folder }}</h2>
-					<ul id="schakel">
-						@forelse ($schakeltjes as $schakeltje)
-							<li class="schakeltje">
-								<a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
-							</li>
-						@empty
-							<li class="text-center">Er zijn momenteel geen garchiveerde schakeltjes.</li>
-						@endforelse
-					</ul>
+					<table id="schakel">
+						<tbody>
+							<tr>
+								@forelse ($schakeltjes as $schakeltje)
+									<td class="schakeltje">
+										<a href="{{ $schakeltje->url }}" target="_blank">{{ $schakeltje->title }}</a>
+									</td>
+									<td>
+										<form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right delete">
+											{{ csrf_field() }}
+											{{ method_field('delete') }}
+											<button type="submit"><i class="fa fa-trash"></i></button>
+										</form>
+									</td>
+								@empty
+									<td colspan="2" class="text-center">Er zijn momenteel geen garchiveerde schakeltjes.</td>
+								@endforelse
+							</tr>
+						</tbody>
+					</table>
 				@endif
 			@endforeach
 			<a href="{{ route('schakeltje.index') }}"><i class="fa fa-chevron-left"></i> Terug naar het overzicht</a>

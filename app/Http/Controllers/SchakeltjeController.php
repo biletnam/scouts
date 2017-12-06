@@ -64,6 +64,21 @@ class SchakeltjeController extends Controller
      */
     public function destroy(Schakeltje $schakeltje)
     {
+    }
+
+    public function archive(string $folder = '')
+    {
+    	$folders = Storage::disk('schakeltjes')->directories();
+    	$schakeltjes = [];
+    	foreach ($folders as $folder) {
+    		$schakeltjes[$folder] = Schakeltje::where([['archived', '=', 1], ['url', 'LIKE', 'schakeltjes/' . $folder . '/%']])
+		                                        ->orderBy('created_at', 'desc')->get();
+	    }
+    	return view('schakeltjes.archive')->with(['schakeltjes' => $schakeltjes]);
+    }
+
+    public function doArchive(Schakeltje $schakeltje)
+    {
 	    $year = $schakeltje->getStartingYear();
 
 	    $file = new File(public_path($schakeltje->url));
@@ -76,16 +91,5 @@ class SchakeltjeController extends Controller
 
 	    Session::flash('success', 'Schakeltje gearchiveerd');
 	    return redirect()->back();
-    }
-
-    public function archive(string $folder = '')
-    {
-    	$folders = Storage::disk('schakeltjes')->directories();
-    	$schakeltjes = [];
-    	foreach ($folders as $folder) {
-    		$schakeltjes[$folder] = Schakeltje::where([['archived', '=', 1], ['url', 'LIKE', 'schakeltjes/' . $folder . '/%']])
-		                                        ->orderBy('created_at', 'desc')->get();
-	    }
-    	return view('schakeltjes.archive')->with(['schakeltjes' => $schakeltjes]);
     }
 }

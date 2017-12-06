@@ -24,7 +24,7 @@
                             </td>
                             @if (Auth::check())
                                 <td>
-                                    <form action="{{ route('schakeltje.destroy', $schakeltje) }}" method="POST" class="pull-right clear-right delete">
+                                    <form action="{{ route('schakeltje.do-archive', $schakeltje) }}" method="POST" class="pull-right clear-right delete">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
                                         <button type="submit"><i class="fa fa-trash"></i></button>

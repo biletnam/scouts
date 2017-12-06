@@ -67,19 +67,17 @@ class MailchimpService
 	 * @return array
 	 */
 	public function getLists() {
-		$lists = [
-			self::getList($this->general),
-			self::getList($this->test),
-			self::getList($this->schakeltje),
-			self::getList($this->kapoenen),
-			self::getList($this->welpen),
-			self::getList($this->jojos),
-			self::getList($this->givers)
-		];
-		foreach ($lists as $key => $list) {
-			$lists[$key] = self::getMembersForList($list);
+		$lists = $this->mailchimp->get('lists?fields=lists.id,lists.name,lists.stats.member_count')['lists'];
+		$result = [];
+		$listKeys = [$this->general, $this->schakeltje, $this->kapoenen, $this->welpen, $this->jojos, $this->givers,];
+		foreach ($listKeys as $key) {
+			foreach ($lists as $list) {
+				if ($list['id'] == $key) {
+					$result[$key] = $list;
+				}
+			}
 		}
-		return $lists;
+		return $result;
 	}
 
 	/**

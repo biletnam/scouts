@@ -32,6 +32,7 @@ Route::get('contact', 'PageController@contact')->name('contact');
 Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::resource('schakeltje', 'SchakeltjeController', ['only' => ['store', 'destroy']]);
 	Route::get('schakeltje/archief', 'SchakeltjeController@archive')->name('schakeltje.archive');
+	Route::delete('schakeltje/archief', 'SchakeltjeController@doArchive')->name('schakeltje.do-archive');
 	Route::get('/', 'PageController@dashboard');
 	Route::get('/dashboard', 'PageController@dashboard');
 	Route::get('/nuttig', 'PageController@nuttig')->name('nuttig');

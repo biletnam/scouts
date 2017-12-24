@@ -323,7 +323,11 @@ header {
 
 //-- DEN18 --//
 
-.content18 { padding-left: 30px; padding-right: 30px; }
+.content18 {
+	@media #{$tablet} {
+		padding-left: 30px; padding-right: 30px;
+	}
+}
 .den18 #mainpage { min-height: 1115px;}
 .leider {
 	padding: 1em;
@@ -362,7 +366,10 @@ header {
 	left: 0; right: 0; background-color: black; opacity: 0.5; display: none;
 }
 .takken {
-	clear: both; display: block; margin: 0 40px 0 40px; padding-top: 20px;
+	clear: both; display: block; padding-top: 20px;
+	@media #{$tablet} {
+		margin: 0 40px 0 40px;
+	}
 	h3, h4, h5 { text-align: center; }
 	td { border: none; padding: 8px 5px 8px 7px; }
 }
@@ -456,7 +463,7 @@ footer {
 
 //-- ADMIN --//
 #welkom { float: right; }
-#leiding {
+.container#leiding {
 	position: relative;
 	@media #{$mobile} { padding: 0 2em }
 	#background-img { position: fixed; top: 0; right: 0; height: 100vh; width: auto; opacity: .4; z-index: -1; }

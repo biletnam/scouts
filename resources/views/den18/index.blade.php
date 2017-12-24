@@ -7,25 +7,23 @@
 			<h1 class="title">DEN 18</h1>
 			<div class="subnavbar">
 				<div class="subnav">
-					<div class="row">
-						<div class="blocklink">
-							<a data-href="groep">DE GROEP</a>
-						</div>
-						<div class="blocklink">
-							<a data-href="kapoenen">KAPOENEN</a>
-						</div>
-						<div class="blocklink">
-							<a data-href="welpen">WELPEN</a>
-						</div>
-						<div class="blocklink">
-							<a data-href="jojos">JOJO'S</a>
-						</div>
-						<div class="blocklink">
-							<a data-href="givers">GIVERS</a>
-						</div>
-						<div class="blocklink">
-							<a data-href="leiding">LEIDING</a>
-						</div>
+					<div class="blocklink">
+						<a data-href="groep">DE GROEP</a>
+					</div>
+					<div class="blocklink">
+						<a data-href="kapoenen">KAPOENEN</a>
+					</div>
+					<div class="blocklink">
+						<a data-href="welpen">WELPEN</a>
+					</div>
+					<div class="blocklink">
+						<a data-href="jojos">JOJO'S</a>
+					</div>
+					<div class="blocklink">
+						<a data-href="givers">GIVERS</a>
+					</div>
+					<div class="blocklink">
+						<a data-href="leiding">LEIDING</a>
 					</div>
 				</div>
 			</div>
@@ -68,7 +66,6 @@
 							<thead>
 								<tr>
 									<th>Naam</th>
-									<th>Adres</th>
 									<th>E-mail</th>
 									<th>GSM</th>
 								</tr>
@@ -79,7 +76,6 @@
 										{{ $takleiding->firstname.' '.$takleiding->name }}
 										{{ ($takleiding->show_nick) ? ' ('.$takleiding->nickname.')' : '' }} - TL
 									</td>
-									<td>{{ $takleiding->address }}<br>{{ $takleiding->zip.' '.$takleiding->city }}</td>
 									<td><a href="mailto:{{ $takleiding->username }}">{{ $takleiding->username }}</a></td>
 									<td><a href="tel:{{ preg_replace('/\D/', '', str_replace('+', '00', $takleiding->gsm)) }}">{{ $takleiding->gsm }}</a></td>
 								</tr>
@@ -90,7 +86,6 @@
 												{{ $leader->member->firstname.' '.$leader->member->name }}
 												{{ ($leader->show_nick) ? ' ('.$leader->nickname.')' : '' }}
 											</td>
-											<td>{{ $leader->member->address }}<br>{{ $leader->member->zip.' '.$leader->member->city }}</td>
 											<td><a href="mailt:{{ $leader->username }}">{{ $leader->username }}</a></td>
 											<td><a href="tel:{{ $leader->member->formatMobile() }}">{{ $leader->member->gsm }}</a></td>
 										</tr>

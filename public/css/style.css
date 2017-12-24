@@ -506,9 +506,10 @@ header, .map-wrap {
     color: white;
     position: absolute; }
 
-.content18 {
-  padding-left: 30px;
-  padding-right: 30px; }
+@media (min-width: 767px) {
+  .content18 {
+    padding-left: 30px;
+    padding-right: 30px; } }
 
 .den18 #mainpage {
   min-height: 1115px; }
@@ -596,8 +597,10 @@ header, .map-wrap {
 .takken {
   clear: both;
   display: block;
-  margin: 0 40px 0 40px;
   padding-top: 20px; }
+  @media (min-width: 767px) {
+    .takken {
+      margin: 0 40px 0 40px; } }
   .takken h3, .takken h4, .takken h5 {
     text-align: center; }
   .takken td {
@@ -728,12 +731,12 @@ footer {
 #welkom {
   float: right; }
 
-#leiding {
+.container#leiding {
   position: relative; }
   @media (max-width: 767px) {
-    #leiding {
+    .container#leiding {
       padding: 0 2em; } }
-  #leiding #background-img {
+  .container#leiding #background-img {
     position: fixed;
     top: 0;
     right: 0;
@@ -741,24 +744,24 @@ footer {
     width: auto;
     opacity: .4;
     z-index: -1; }
-  #leiding > .row > .one-fifth {
+  .container#leiding > .row > .one-fifth {
     margin-top: 3em; }
     @media (max-width: 767px) {
-      #leiding > .row > .one-fifth {
+      .container#leiding > .row > .one-fifth {
         display: none; } }
-  #leiding main {
+  .container#leiding main {
     padding: 2em 5em;
     margin-top: 50px; }
     @media (max-width: 767px) {
-      #leiding main {
+      .container#leiding main {
         padding: 2em 0; } }
-    #leiding main.leden {
+    .container#leiding main.leden {
       width: 85%; }
       @media (max-width: 767px) {
-        #leiding main.leden {
+        .container#leiding main.leden {
           width: 100%;
           margin: 0; } }
-    #leiding main p.success {
+    .container#leiding main p.success {
       text-align: center;
       background-color: #d2fbc8;
       color: green;
@@ -767,14 +770,14 @@ footer {
       left: 0;
       width: 100%;
       padding: .5em 0; }
-    #leiding main .select2 {
+    .container#leiding main .select2 {
       float: right; }
-      #leiding main .select2 .select2-selection {
+      .container#leiding main .select2 .select2-selection {
         border-radius: 0; }
     @media (max-width: 767px) {
-      #leiding main .table-leden, #leiding main .table-users {
+      .container#leiding main .table-leden, .container#leiding main .table-users {
         overflow-x: scroll; } }
-  #leiding #leiding table:not(:first-of-type) {
+  .container#leiding #leiding table:not(:first-of-type) {
     width: 290px; }
 
 .errors {

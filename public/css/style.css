@@ -171,10 +171,10 @@ body {
 
 main {
   padding: 5em 5em 5em 5em; }
-  main a {
+  main a:not(.btn) {
     color: #4e7a05;
     text-decoration: none; }
-    main a:hover, main a:focus, main a:active {
+    main a:not(.btn):hover, main a:not(.btn):focus, main a:not(.btn):active {
       color: #4e7a05;
       opacity: .8;
       text-decoration: underline; }
@@ -765,10 +765,10 @@ footer {
     @media (max-width: 767px) {
       .container#leiding main {
         padding: 2em 0; } }
-    .container#leiding main a {
+    .container#leiding main a:not(.btn) {
       color: #4e7a05;
       text-decoration: none; }
-      .container#leiding main a:hover, .container#leiding main a:focus, .container#leiding main a:active {
+      .container#leiding main a:not(.btn):hover, .container#leiding main a:not(.btn):focus, .container#leiding main a:not(.btn):active {
         color: #4e7a05;
         opacity: .8;
         text-decoration: underline; }

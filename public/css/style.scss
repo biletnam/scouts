@@ -108,7 +108,7 @@ body { font-family: 'Roboto'; font-size: 16px; margin: 0; }
 .parallax-wrapper { width: 100%; z-index: 2; background-color: #fff; }
 main {
 	padding: 5em 5em 5em 5em;
-	a {
+	a:not(.btn) {
 		color: $theme; text-decoration: none;
 		&:hover, &:focus, &:active { color: $theme; opacity: .8; text-decoration: underline; }
 	}
@@ -481,7 +481,7 @@ footer {
 	main {
 		padding: 2em 5em; margin-top: 50px;
 		@media #{$mobile} { padding: 2em 0; }
-		a {
+		a:not(.btn) {
 			color: $theme; text-decoration: none;
 			&:hover, &:focus, &:active { color: $theme; opacity: .8; text-decoration: underline; }
 		}

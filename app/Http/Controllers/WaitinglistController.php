@@ -56,8 +56,9 @@ class WaitinglistController extends Controller
         ]);
 
         $input = $request->all();
+	    $input['priority'] = !empty($input['priority']);
 
-        $waitinglist = new Waitinglist($input);
+	    $waitinglist = new Waitinglist($input);
         $waitinglist->save();
 
         Session::flash('success', $waitinglist->firstname.' '.$waitinglist->name.' toegevoegd');
@@ -122,6 +123,7 @@ class WaitinglistController extends Controller
         $waitinglist->email      = $input['email'];
         $waitinglist->tak        = $input['tak'];
         $waitinglist->year       = $input['year'];
+        $waitinglist->priority   = !empty($input['priority']);
 
         $waitinglist->save();
 

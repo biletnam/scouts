@@ -108,6 +108,10 @@ body { font-family: 'Roboto'; font-size: 16px; margin: 0; }
 .parallax-wrapper { width: 100%; z-index: 2; background-color: #fff; }
 main {
 	padding: 5em 5em 5em 5em;
+	a {
+		color: $theme; text-decoration: none;
+		&:hover, &:focus, &:active { color: $theme; opacity: .8; text-decoration: underline; }
+	}
 	@media #{$mobile} {margin: 3em 5%; padding: 2em 1em;}
 	@media #{$desktop} {
 		width: 960px; margin: 350px auto 0; padding-top: 2em;
@@ -428,10 +432,13 @@ section {
 
 //-- FOOTER --//
 
-footer { 
+footer {
 	background-color: $theme; box-sizing: border-box; color: white;
 	padding: 1em 4em; width: 100%; z-index: 2; min-height: 250px;
-	a {color: white;}
+	a {
+		color: white;
+		&:hover,&:active,&:focus { color: #ccc; text-decoration: none; }
+	}
 	#disclaimer { clear: both; padding: 5px 20px 5px 0; text-align: center; font-size: 60%; }
 	.uc { padding: 20px 0 300px 20px;}
 	.hopper {
@@ -474,6 +481,10 @@ footer {
 	main {
 		padding: 2em 5em; margin-top: 50px;
 		@media #{$mobile} { padding: 2em 0; }
+		a {
+			color: $theme; text-decoration: none;
+			&:hover, &:focus, &:active { color: $theme; opacity: .8; text-decoration: underline; }
+		}
 		&.leden {
 			width: 85%;
 			@media #{$mobile} { width: 100%; margin: 0; }

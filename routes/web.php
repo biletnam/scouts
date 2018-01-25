@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'leiding'], function() {
 	Route::get('/ledenlijst', 'MemberController@index')->name('ledenlijst.index');
 	Route::match(['get', 'post'], '/ledenlijst/{tak?}/print', 'MemberController@print')->name('ledenlijst.print');
 
-	Route::group(['middleware' => 'has-permission: account-management'], function () {
+	Route::group(['middleware' => 'has-permission:account-management'], function () {
 		// Users
 		Route::post('/gebruikers/add-role', 'UserController@addRole')->name('gebruikers.add-role');
 		Route::delete('/gebruikers/drop-role', 'UserController@dropRole')->name('gebruikers.drop-role');

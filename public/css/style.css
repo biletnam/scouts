@@ -171,6 +171,13 @@ body {
 
 main {
   padding: 5em 5em 5em 5em; }
+  main a {
+    color: #4e7a05;
+    text-decoration: none; }
+    main a:hover, main a:focus, main a:active {
+      color: #4e7a05;
+      opacity: .8;
+      text-decoration: underline; }
   @media (max-width: 767px) {
     main {
       margin: 3em 5%;
@@ -690,6 +697,9 @@ footer {
   min-height: 250px; }
   footer a {
     color: white; }
+    footer a:hover, footer a:active, footer a:focus {
+      color: #ccc;
+      text-decoration: none; }
   footer #disclaimer {
     clear: both;
     padding: 5px 20px 5px 0;
@@ -755,6 +765,13 @@ footer {
     @media (max-width: 767px) {
       .container#leiding main {
         padding: 2em 0; } }
+    .container#leiding main a {
+      color: #4e7a05;
+      text-decoration: none; }
+      .container#leiding main a:hover, .container#leiding main a:focus, .container#leiding main a:active {
+        color: #4e7a05;
+        opacity: .8;
+        text-decoration: underline; }
     .container#leiding main.leden {
       width: 85%; }
       @media (max-width: 767px) {

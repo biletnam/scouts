@@ -13,7 +13,7 @@ class CreateWaitinglistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('waitinglists', function (Blueprint $table) {
+        Schema::create('waitinglist', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('name');
@@ -42,6 +42,6 @@ class CreateWaitinglistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('waitinglists');
+        Schema::dropIfExists('waitinglist');
     }
 }

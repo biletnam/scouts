@@ -22,13 +22,12 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
 	</script>
 	<![endif]-->
-	<script>
-		window.Laravel = <?php echo json_encode([
-			'csrfToken' => csrf_token(),
-		]); ?>
+	<script type="text/javascript" nonce="{{ $scriptNonce }}">
+		window.Laravel = {"csrfToken": "{{ csrf_token() }}"};
 	</script>
 </head>
 <body>
+
 <nav class="navbar navbar-default" role="navigation">
 	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav"><i class="fa fa-bars"></i></button>
 	<a href="home"><img id="logo" src="img/logo.svg" alt="logo 18BP"></a>
@@ -88,23 +87,11 @@
 	@endif
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-	$(function() { setTimeout(function() { $('p.success').slideUp(); }, 3000); });
-	var base_url = "{{ url('/') }}";
-	$('.navbar-toggle').click(function() {
-		var nav = $('.navbar-toggle').data('toggle');
-		$('.'+nav).stop().slideToggle();
-		$('.navbar').toggleClass('mobile-active');
-	});
-	$('a.add-role').click(function(e) {
-		e.preventDefault();
-		$('#add-role').show();
-	});
-	$('#leader').select2();
-</script>
+<script type="text/javascript" nonce="noce-{{ $scriptNonce }}" src="js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" nonce="noce-{{ $scriptNonce }}" src="js/libs/select2.min.js"></script>
+<script type="text/javascript" nonce="noce-{{ $scriptNonce }}" src="js/libs/sweetalert.min.js"></script>
+<script type="text/javascript" nonce="noce-{{ $scriptNonce }}" src="js/libs/ckeditor.js"></script>
+<script type="text/javascript" nonce="noce-{{ $scriptNonce }}" src="js/admin.js"></script>
 @yield('js')
 
 </body>

@@ -92,6 +92,15 @@ $(function() {
 			});
         });
     }
+
+
+    $("#checks").on("change", "input:checkbox", function() {
+        $("#checks").submit();
+    });
+    $("#printLink").click(function(e) {
+        e.preventDefault();
+        window.print();
+    });
 });
     
 function formatMember(member){

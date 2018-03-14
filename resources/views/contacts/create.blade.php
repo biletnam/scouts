@@ -63,5 +63,5 @@
 @stop
 
 @section('js')
-	<script src="js/members.js"></script>
+	<script type="text/javascript" src="js/members.js" nonce="{{ $scriptNonce }}"></script>
 @stop

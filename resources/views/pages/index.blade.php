@@ -7,11 +7,11 @@
 			<div class="news">
 				<h1 class="title">NIEUWTJES</h1>
 				@forelse($articles as $article)
-					<article class="front-page" id="<?= $article->id; ?>">
-						<a href="nieuws#<?= $article->id ?>">
-							<h2><?= $article->title ?></h2>
-							<p><?= $article->body ?></p>
-							<div class="footer"><?= $article->created ?></div>
+					<article class="front-page" id="{{ $article->id }}">
+						<a href="nieuws#{{ $article->id }}">
+							<h2>{{ $article->title }}</h2>
+							<div class="article-content">{!! $article->body !!}</div>
+							<div class="footer">{{ $article->created }}</div>
 						</a>
 					</article>
 				@empty

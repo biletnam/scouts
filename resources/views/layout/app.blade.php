@@ -13,15 +13,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="css/inc/normalize.min.css"> -->
-        <!-- <link rel="stylesheet" href="css/inc/bootstrap.min.css"> -->
 
         <link href="css/style.css" rel="stylesheet">
         <!---->
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+          <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js">
           </script>
         <![endif]-->
     </head>
@@ -68,24 +66,18 @@
         </footer>
         
         <!-- Le scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script type="text/javascript" src="js/libs/hopper.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-3.3.1.min.js" nonce="{{ $scriptNonce }}"></script>
+        <script type="text/javascript" src="js/libs/hopper.js" nonce="{{ $scriptNonce }}"></script>
         @yield('js')
         <?php if('home' || 'den18'): ?>
-            <script type="text/javascript" src="js/pretty.js"></script>
+            <script type="text/javascript" type="text/javascript" src="js/pretty.js" nonce="{{ $scriptNonce }}"></script>
         <?php endif; ?>
         <?php if ('contact'): ?>
-            <script src="js/libs/autosize.min.js"></script>
-            <script src="js/contact.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAd-M1FNeu-MO_s-Fmo6Bzxj4UdMn2fjnU&callback=initMap" async defer></script>
+            <script type="text/javascript" src="js/libs/autosize.min.js" nonce="{{ $scriptNonce }}"></script>
+            <script type="text/javascript" src="js/contact.js" nonce="{{ $scriptNonce }}"></script>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9mi-HPxHd0MTWm2-GJbzWyyqfy4-Pfqw&callback=initMap" async defer nonce="{{ $scriptNonce }}"></script>
         <?php endif ?>
 
-        <script>
-            $('.navbar-toggle').click(function() {
-                var nav = $('.navbar-toggle').data('toggle');
-                $('.'+nav).stop().slideToggle();
-                $('.navbar').toggleClass('mobile-active');
-            });
-        </script>
+        <script type="text/javascript" src="js/nav.js" nonce="{{ $scriptNonce }}"></script>
     </body>
 </html>

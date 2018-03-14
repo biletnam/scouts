@@ -176,9 +176,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+	    App\Providers\CspServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Newsletter\NewsletterServiceProvider::class,
+	    Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class,
+	    Rollbar\Laravel\RollbarServiceProvider::class,
     ],
 
     /*

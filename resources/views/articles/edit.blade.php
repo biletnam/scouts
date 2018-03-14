@@ -18,7 +18,4 @@
 				</li>
 			</ul>
 		</form>
-		<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>
-		<script type="text/javascript">CKEDITOR.replace('body');</script>
-	</main>
 @stop

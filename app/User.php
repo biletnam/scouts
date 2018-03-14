@@ -85,11 +85,17 @@ class User extends Authenticatable
      * @param string $permission
      * @return bool
      **/
-    public function hasPermission($permission) {
-        foreach ($this->roles as $role) {
+    public function hasPermission(string $permission) {
+    	/** @var Role $role */
+	    foreach ($this->roles as $role) {
         	$result = $role->hasPermission($permission);
             if ($result) { return true; }
         }
         return false;
+    }
+
+    public function hasRole(string $role)
+    {
+    	// todo query roles
     }
 }

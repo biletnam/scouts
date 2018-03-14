@@ -484,9 +484,12 @@ header, .map-wrap {
       font-style: italic;
       margin-bottom: 5px;
       text-align: right; }
-    .news article a {
+    .news article > a {
       color: black;
       text-decoration: none; }
+      .news article > a:hover, .news article > a:active, .news article > a:focus {
+        color: black;
+        text-decoration: none; }
     .news article .controls > a {
       float: right;
       margin-bottom: 5px;

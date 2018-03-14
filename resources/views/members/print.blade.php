@@ -97,15 +97,5 @@
 	</main>
 @stop
 @section('js')
-	<script>
-		$(function() {
-			$("#checks").on("change", "input:checkbox", function() {
-				$("#checks").submit();
-			});
-			$("#printLink").click(function(e) {
-				e.preventDefault();
-				window.print();
-			});
-		});
-	</script>
+	<script type="text/javascript" src="js/members.js" nonce="{{ $scriptNonce }}"></script>
 @stop
